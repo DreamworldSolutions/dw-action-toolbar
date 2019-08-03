@@ -1,8 +1,8 @@
 import { LitElement, html, css } from 'lit-element';
 import { flexLayout, alignment } from '@dw/flex-layout';
-import '../dw-action-toolbar';
+import '../action-toolbar';
 import {materialStyles} from'@dw/material-styles/material-styles';
-class DwActionToolbarDemo extends LitElement {
+class ActionToolbarDemo extends LitElement {
   static get styles() {
     return [
       materialStyles,
@@ -33,9 +33,9 @@ class DwActionToolbarDemo extends LitElement {
   
   render() {
     return html`
-      <span class="list-item layout horizontal end-justified center-center">
+      <span class="ripple list-item layout horizontal end-justified center-center">
         <div>
-          <dw-action-toolbar 
+          <action-toolbar 
           @edit=${this._onEditClicked}
           @new=${this._newClicked}
           @delete=${this._onDeleteClicked} 
@@ -49,7 +49,7 @@ class DwActionToolbarDemo extends LitElement {
           .langResources=${this._getLangResources()}
           hoverTargetParentSelector="span" 
           .icons=${{edit: "image.edit", payment: 'action.payment'}}>
-        </dw-action-toolbar>
+        </action-toolbar>
         </div>
       </span>
     `;
@@ -97,4 +97,4 @@ class DwActionToolbarDemo extends LitElement {
   }
 }
 
-customElements.define('dw-action-toolbar-demo', DwActionToolbarDemo);
+customElements.define('action-toolbar-demo', ActionToolbarDemo);

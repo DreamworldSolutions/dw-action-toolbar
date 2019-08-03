@@ -1,5 +1,5 @@
 
- # dw-action-toolbar
+ # action-toolbar
   element is used to display action toolbar anywhere like in list, header, dialog.
   
   ## Behaviors
@@ -13,7 +13,7 @@
 ### Usage
 
 ```js
-import '@dw/dw-action-toolbar';
+import '@dw/dw-action-toolbar/action-toolbar';
 ```
 ### Events
   Fires events by action name e.g for `delete` action fires `delete`
@@ -22,31 +22,31 @@ import '@dw/dw-action-toolbar';
 ## Examples
 #### Example of only primary action (no vert more, always visible):
 ```html
-<dw-action-toolbar .primaryActions="${['edit','delete']}"></dw-action-toolbar>
+<action-toolbar .primaryActions="${['edit','delete']}"></action-toolbar>
 ```
   
  #### Example of primary and secondary actions:
   ```html
-  <dw-action-toolbar .primaryActions="${['edit']}" .secondaryActions="${['delete','archive']}" .semiPrimaryActions="${['delete']}"></dw-action-toolbar>
+  <action-toolbar .primaryActions="${['edit']}" .secondaryActions="${['delete','archive']}" .semiPrimaryActions="${['delete']}"></action-toolbar>
   ```
   
   #### Example of action title:
   ```html
-  <dw-action-toolbar .primaryActions="${['edit','delete']}" .langResources="${{'en':{'deleteTitle':'Remove'}}}"></dw-action-toolbar>
+  <action-toolbar .primaryActions="${['edit','delete']}" .langResources="${{'en':{'deleteTitle':'Remove'}}}"></action-toolbar>
   ```
   #### Example of disabled icon:
   ```html
-  <dw-action-toolbar .primaryActions="${['edit','delete']}" .disabledActions="${['delete']}"></dw-action-toolbar>
+  <action-toolbar .primaryActions="${['edit','delete']}" .disabledActions="${['delete']}"></action-toolbar>
   ```
   #### Example of disabled icon with title:
   ```html
-  <dw-action-toolbar .primaryActions="${['edit','delete']}" .disabledActions="${['delete']}" .langResources="${{'en':{'deleteDisabledTooltip':'Delete is not allowed'}}}"></dw-action-toolbar>
+  <action-toolbar .primaryActions="${['edit','delete']}" .disabledActions="${['delete']}" .langResources="${{'en':{'deleteDisabledTooltip':'Delete is not allowed'}}}"></action-toolbar>
   ```
   #### Example of set icons:
   ```html
-  <dw-action-toolbar .primaryActions="${['edit','delete']}" .icons="${{'edit':'myicons:edit'}}"></dw-action-toolbar>
+  <action-toolbar .primaryActions="${['edit','delete']}" .icons="${{'edit':'myicons:edit'}}"></action-toolbar>
   ```
   #### Example of set hover target ancestors selector:
   ```html
-  <dw-action-toolbar .primaryActions="${['edit','delete']}" .hoverTargetParentSelector="data-table-row"></dw-action-toolbar>
+  <action-toolbar .primaryActions="${['edit','delete']}" .hoverTargetParentSelector="data-table-row"></action-toolbar>
   ```

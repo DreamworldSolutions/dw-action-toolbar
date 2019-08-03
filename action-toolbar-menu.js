@@ -4,7 +4,7 @@ import { DwSelectDialog } from '@dw/dw-select/dw-select-dialog';
 import { Typography } from '@dw/material-styles/typography'
 import { includes } from 'lodash-es';
 
-class dwActionToolbarMenu extends DwSelectDialog {
+class ActionToolbarMenu extends DwSelectDialog {
   static get styles() {
     return [super.styles,
       flexLayout,
@@ -124,7 +124,7 @@ class dwActionToolbarMenu extends DwSelectDialog {
     for(let i = (this._kbHighlightedIndex + 1); i < this._items.length; i++) {
       if(!this._filteredApplied || this._filteredIndexMap[i]){
         if(includes(this.disabledActions, this._items[i])){
-          continue;;
+          continue;
         }
         this._kbHighlightedIndex = i;
         break;
@@ -146,4 +146,4 @@ class dwActionToolbarMenu extends DwSelectDialog {
     return this._getActionText(action);
   }
 }
-customElements.define('dw-action-toolbar-menu', dwActionToolbarMenu);
+customElements.define('action-toolbar-menu', ActionToolbarMenu);

@@ -4,9 +4,9 @@ import { flexLayout, alignment } from '@dw/flex-layout';
 import { union, intersection, difference, includes, get } from 'lodash-es';
 import './action-toolbar-menu';
 import * as icons from '@dw/material-icons'
-class dwActionToolbar extends LitElement {
+class ActionToolbar extends LitElement {
   /**
-  `action-toolbar` element is used to display action toolbar anywhere like in list, header, dialog.
+  `dw-action-toolbar` element is used to display action toolbar anywhere like in list, header, dialog.
   `dw-context-menu-button` is used to display vert-more.
   
   ## Behaviors
@@ -14,40 +14,40 @@ class dwActionToolbar extends LitElement {
   
   Example of only primary action (no vert more, always visible):
   
-      <action-toolbar primaryActions=${['edit','delete']}>
-      </action-toolbar>
+      <dw-action-toolbar primaryActions=${['edit','delete']}>
+      </dw-action-toolbar>
   
   Example of primary and secondary actions:
   
-      <action-toolbar .primaryActions=${['edit']} .secondaryActions=${['delete','archive']} .semiPrimaryActions=${['delete']}>
-      </action-toolbar>
+      <dw-action-toolbar .primaryActions=${['edit']} .secondaryActions=${['delete','archive']} .semiPrimaryActions=${['delete']}>
+      </dw-action-toolbar>
   
   Example of action title:
   
-      <action-toolbar .primaryActions=${['edit','delete']}
+      <dw-action-toolbar .primaryActions=${['edit','delete']}
         .langResources=${{'en':{'deleteTitle':'Remove'}}}>
-      </action-toolbar>
+      </dw-action-toolbar>
   
   Example of disabled icon:
   
-      <action-toolbar .primaryActions=${['edit','delete']} .disabledActions=${['delete']}>
-      </action-toolbar>
+      <dw-action-toolbar .primaryActions=${['edit','delete']} .disabledActions=${['delete']}>
+      </dw-action-toolbar>
   
   Example of disabled icon with title:
   
-      <action-toolbar .primaryActions=${['edit','delete']} .disabledActions=${['delete']}
+      <dw-action-toolbar .primaryActions=${['edit','delete']} .disabledActions=${['delete']}
         .langResources=${{'en':{'deleteDisabledTooltip':'Delete is not allowed'}}}>
-      </action-toolbar>
+      </dw-action-toolbar>
   
   Example of set icons:
   
-      <action-toolbar .primaryActions=${['edit','delete']} .icons=${{'edit':'myicons:edit'}}>
-      </action-toolbar>
+      <dw-action-toolbar .primaryActions=${['edit','delete']} .icons=${{'edit':'myicons:edit'}}>
+      </dw-action-toolbar>
   
   Example of set hover target ancestors selector:
   
-      <action-toolbar .primaryActions=${['edit','delete']} .hoverTargetParentSelector="data-table-row">
-      </action-toolbar>
+      <dw-action-toolbar .primaryActions=${['edit','delete']} .hoverTargetParentSelector="data-table-row">
+      </dw-action-toolbar>
   
   @demo demo/index.html
   @hero hero.svg
@@ -92,7 +92,7 @@ class dwActionToolbar extends LitElement {
         background-size: 100%;
         transition: background 0s;
       }
-      action-toolbar-menu {
+      dw-action-toolbar-menu {
         z-index: 100;
       }
     `];
@@ -467,4 +467,4 @@ class dwActionToolbar extends LitElement {
   }
 }
 
-customElements.define('dw-action-toolbar', dwActionToolbar);
+customElements.define('action-toolbar', ActionToolbar);
