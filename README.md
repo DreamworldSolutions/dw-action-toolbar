@@ -47,3 +47,6 @@ import '@dw/dw-action-toolbar/action-toolbar';
   ```html
   <action-toolbar .actions="${[{name: 'ADD', label: 'Add', icon: 'content.add'}, {name: 'EDIT', label: 'Edit', icon: 'editor.edit'}, {name: 'DELETE', label: 'Delete', icon: 'action.delete'}]}"></action-toolbar>
   ```
+
+# Road map
+- Support `primaryActions` & `semiPrimaryActions`.

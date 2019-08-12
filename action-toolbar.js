@@ -42,19 +42,7 @@ export class ActionToolbar extends DwSelect {
        * Passed close icon name.
        * Show icon in dialog header based on value.
        */
-      closeIcon: String,
-      /**
-       * Input property.
-       * Always show to user to this actions from master action.
-       * e.g. ['ADD', 'EDIT']
-       */
-      primaryActions:  Array,
-      /**
-       * Input property.
-       * Action show on element hover from master action.
-       * e.g. ['DOWNLOAD', 'DELETE']
-       */
-      semiPrimaryActions: Array,
+      closeIcon: String
     };
   }
 
