@@ -64,7 +64,7 @@ export class ActionToolbar extends DwSelect {
 
   set actions(val) {
     this._actions = val;
-    this._manageItems();
+    this._computeItems();
   }
 
   get disabledActions() {
@@ -73,7 +73,7 @@ export class ActionToolbar extends DwSelect {
 
   set disabledActions(val) {
     this._disabledActions = val;
-    this._manageItems();
+    this._computeItems();
   }
 
   get hiddenActions() {
@@ -82,7 +82,7 @@ export class ActionToolbar extends DwSelect {
 
   set hiddenActions(val) {
     this._hiddenActions = val;
-    this._manageItems();
+    this._computeItems();
   }
 
   constructor() {
@@ -161,13 +161,15 @@ export class ActionToolbar extends DwSelect {
    * Manage `items` property based on `actions`, `hiddenActions` and `disabledActions`.
    * @protected
    */
-  _manageItems() {
+  _computeItems() {
     if(isEmpty(this.actions)) {
       this.items = [];
       return;
     }
 
-    let aActions = this._actionsDisabled(this._removeHiddenActions());
+    let aActions = cloneDeep(this.actions);
+    aActions = this._removeHiddenActions(aActions);
+    this._addDisabledAttrs(aActions);
     this.items = aActions;
   }
 
@@ -176,34 +178,28 @@ export class ActionToolbar extends DwSelect {
    * @returns {Array} New action withoud hidden actions.
    * @protected
    */
-  _removeHiddenActions(){
-    let aActions = cloneDeep(this.actions);
-    forEach(this.hiddenActions || [], (hiddenAction)=> {
-      forEach(this.actions, (action, key)=> {
-        if(action.name == hiddenAction) {
-          aActions.splice(key, 1);
-          return false;
-        }
-      });
+  _removeHiddenActions(aActions){
+    let result = [];
+    aActions.forEach((action) => {
+      if(this.hiddenActions.indexOf(action.name) >= 0) {
+        result.push(action);
+      }
     });
-    return aActions;
+    return result;
   }
 
   /**
-   * Set disabled and tooltip for disable actions.
-   * @param {Array} aActions actions model
-   * @returns {Array} new actions with disabled and tooltip.
+   * Sets `disabled` and `disabledTooltip` attribute for the disabled actions.
+   * @param {Array} aActions actions 
    */
-  _actionsDisabled(aActions) {
-    forEach(this.disabledActions, (tooltip, disableAction)=> {
-      forEach(aActions, (action) => {
-        if(disableAction == action.name) {
-          action.disabled = true;
-          action.disabledTooltip = tooltip;
-        }
-      });
+  _addDisabledAttrs(aActions) {
+    aActions.forEach((action) => {
+      let disabledTooltip = this.disabledActions[action.name];
+      if(disabledTooltip) {
+        action.disabled = true;
+        action.disabledTooltip = disabledTooltip;
+      }
     });
-    return aActions;
   }
 }
 
