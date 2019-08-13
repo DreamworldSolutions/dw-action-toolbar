@@ -1,5 +1,5 @@
 import { html, css } from 'lit-element';
-import { DwSelectDialog } from '@dw/dw-select/dw-select-dialog';
+import { DwSelectDialog } from '@dreamworld/dw-select/dw-select-dialog';
 import { getIcon } from 'icons';
 
 export class DwActionToolbarMenu extends DwSelectDialog {
