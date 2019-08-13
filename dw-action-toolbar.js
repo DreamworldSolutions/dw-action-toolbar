@@ -2,17 +2,23 @@ import { html, css } from 'lit-element';
 import { flexLayout, alignment } from '@dw/flex-layout';
 import { DwSelect } from '@dw/dw-select/dw-select'
 import isEmpty from 'lodash-es/isEmpty';
-import forEach from 'lodash-es/forEach';
 import cloneDeep from 'lodash-es/cloneDeep';
-import './action-toolbar-menu';
+import './dw-action-toolbar-menu';
 
-export class ActionToolbar extends DwSelect {
+export class DwActionToolbar extends DwSelect {
   static get styles() {
     return [
       super.styles,
       flexLayout,
       alignment,
       css`
+        .main-container #dropdownContainer .trigger-icon > svg {
+          height: var(--action-toolbar-trigger-icon-svg-width, 24px);
+          width: var(--action-toolbar-trigger-icon-svg-height, 24px);
+          fill: var(--action-toolbar-trigger-icon-svg-fill-color);
+          padding: var(--action-toolbar-trigger-icon-svg-padding, 0);
+          margin: var(--action-toolbar-trigger-icon-svg-margin, 0);
+        }
     `];
   }
 
@@ -77,7 +83,7 @@ export class ActionToolbar extends DwSelect {
     super();
     this.singleSelect = true;
     this.itemValue="name"
-    this.itemLabel="title"
+    this.itemLabel="label"
     this.hAlign = "right";
     this.triggerIcon = 'navigation.more_vert';
   }
@@ -89,7 +95,7 @@ export class ActionToolbar extends DwSelect {
    */
   _renderSelectDialog() {
     return html`
-      <action-toolbar-menu
+      <dw-action-toolbar-menu
         .items=${this.items}
         .itemLabel=${this.itemLabel}
         .itemValue=${this.itemValue}
@@ -117,7 +123,7 @@ export class ActionToolbar extends DwSelect {
         .closeIcon=${this.closeIcon}
         @value-changed=${this._valueChanged}
         @opened-changed=${this._openedChanged}
-      ></action-toolbar-menu>
+      ></dw-action-toolbar-menu>
     `;
   }
   
@@ -167,6 +173,10 @@ export class ActionToolbar extends DwSelect {
    * @protected
    */
   _removeHiddenActions(aActions){
+    if(isEmpty(this.hiddenActions)) {
+      return aActions;
+    }
+
     let result = [];
     aActions.forEach((action) => {
       if(this.hiddenActions.indexOf(action.name) >= 0) {
@@ -181,6 +191,10 @@ export class ActionToolbar extends DwSelect {
    * @param {Array} aActions actions 
    */
   _addDisabledAttrs(aActions) {
+    if(isEmpty(this.disabledActions)) {
+      return;
+    }
+
     aActions.forEach((action) => {
       let disabledTooltip = this.disabledActions[action.name];
       if(disabledTooltip) {
@@ -191,4 +205,4 @@ export class ActionToolbar extends DwSelect {
   }
 }
 
-customElements.define('action-toolbar', ActionToolbar);
+customElements.define('dw-action-toolbar', DwActionToolbar);

@@ -2,7 +2,7 @@ import { html, css } from 'lit-element';
 import { DwSelectDialog } from '@dw/dw-select/dw-select-dialog';
 import { getIcon } from 'icons';
 
-export class ActionToolbarMenu extends DwSelectDialog {
+export class DwActionToolbarMenu extends DwSelectDialog {
   static get styles() {
     return [
       super.styles,
@@ -31,6 +31,14 @@ export class ActionToolbarMenu extends DwSelectDialog {
           width: var(--action-toolbar-menu-header-back-icon-height, 28px);
           padding: var(--action-toolbar-menu-header-back-icon-padding, 0);
           margin: var(--action-toolbar-menu-header-back-icon-margin, 0px -4px 0px 0px);
+        }
+
+        .header .dialog-header .back-icon > svg {
+          height: var(--action-toolbar-menu-header-back-icon-svg-width, 24px);
+          width: var(--action-toolbar-menu-header-back-icon-svg-height, 24px);
+          fill: var(--action-toolbar-menu-header-back-icon-svg-fill-color);
+          padding: var(--action-toolbar-menu-header-back-icon-svg-padding, 0);
+          margin: var(--action-toolbar-menu-header-back-icon-svg-margin, 0);
         }
       `];
   }
@@ -82,4 +90,4 @@ export class ActionToolbarMenu extends DwSelectDialog {
     super.isItemSelected(item);
   }
 }
-customElements.define('action-toolbar-menu', ActionToolbarMenu);
+customElements.define('dw-action-toolbar-menu', DwActionToolbarMenu);
