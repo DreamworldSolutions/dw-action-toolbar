@@ -2,7 +2,7 @@ import { html, css } from 'lit-element';
 import { flexLayout, alignment } from '@dw/flex-layout';
 import { DwSelect } from '@dw/dw-select/dw-select'
 import isEmpty from 'lodash-es/isEmpty';
-import cloneDeep from 'lodash-es/cloneDeep';
+import clone from 'lodash-es/clone';
 import './dw-action-toolbar-menu';
 
 export class DwActionToolbar extends DwSelect {
@@ -61,15 +61,6 @@ export class DwActionToolbar extends DwSelect {
     this._computeItems();
   }
 
-  get disabledActions() {
-    return this._disabledActions;
-  }
-
-  set disabledActions(val) {
-    this._disabledActions = val;
-    this._computeItems();
-  }
-
   get hiddenActions() {
     return this._hiddenActions;
   }
@@ -97,6 +88,7 @@ export class DwActionToolbar extends DwSelect {
     return html`
       <dw-action-toolbar-menu
         .items=${this.items}
+        .disabledItems=${this.disabledActions}
         .itemLabel=${this.itemLabel}
         .itemValue=${this.itemValue}
         .positionTarget=${this._positionTarget}
@@ -152,7 +144,7 @@ export class DwActionToolbar extends DwSelect {
   }
 
   /**
-   * Manage `items` property based on `actions`, `hiddenActions` and `disabledActions`.
+   * Manage `items` property based on `actions`, `hiddenActions`.
    * @protected
    */
   _computeItems() {
@@ -161,10 +153,8 @@ export class DwActionToolbar extends DwSelect {
       return;
     }
 
-    let aActions = cloneDeep(this.actions);
-    aActions = this._removeHiddenActions(aActions);
-    this._addDisabledAttrs(aActions);
-    this.items = aActions;
+    let aActions = clone(this.actions);
+    this.items = this._removeHiddenActions(aActions);
   }
 
   /**
@@ -179,29 +169,11 @@ export class DwActionToolbar extends DwSelect {
 
     let result = [];
     aActions.forEach((action) => {
-      if(this.hiddenActions.indexOf(action.name) >= 0) {
+      if(this.hiddenActions.indexOf(action.name) === -1) {
         result.push(action);
       }
     });
     return result;
-  }
-
-  /**
-   * Sets `disabled` and `disabledTooltip` attribute for the disabled actions.
-   * @param {Array} aActions actions 
-   */
-  _addDisabledAttrs(aActions) {
-    if(isEmpty(this.disabledActions)) {
-      return;
-    }
-
-    aActions.forEach((action) => {
-      let disabledTooltip = this.disabledActions[action.name];
-      if(disabledTooltip) {
-        action.disabled = true;
-        action.disabledTooltip = disabledTooltip;
-      }
-    });
   }
 }
 
