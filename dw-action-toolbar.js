@@ -12,6 +12,10 @@ export class DwActionToolbar extends DwSelect {
       flexLayout,
       alignment,
       css`
+        :host {
+          --dw-select-item-check-icon-display: none;
+        }
+        
         .main-container #dropdownContainer .trigger-icon > svg {
           height: var(--action-toolbar-trigger-icon-svg-width, 24px);
           width: var(--action-toolbar-trigger-icon-svg-height, 24px);
@@ -127,6 +131,18 @@ export class DwActionToolbar extends DwSelect {
   _valueChanged(e){
     super._valueChanged(e);
     this._triggerActionEvent(e);
+  }
+
+  /**
+   * @param {*} e event data.
+   * Clear selected item on dialog closed.
+   * @override
+   */
+  _openedChanged(e) {
+    super._openedChanged(e);
+    if(!this.opened) {
+      this.selected = null;
+    }
   }
 
   /**

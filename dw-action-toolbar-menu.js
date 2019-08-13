@@ -77,17 +77,5 @@ export class DwActionToolbarMenu extends DwSelectDialog {
   _getCloseIcon() {
     return getIcon(this.closeIcon);
   }
-
-  /**
-   * Item not selected in single select.
-   * @param {*} item 
-   * @override
-   */
-  isItemSelected(item) {
-    if(this.singleSelect) {
-      return false;
-    }
-    super.isItemSelected(item);
-  }
 }
 customElements.define('dw-action-toolbar-menu', DwActionToolbarMenu);
