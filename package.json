@@ -1,7 +1,7 @@
 {
-  "name": "@dw/dw-action-toolbar",
-  "version": "1.0.2",
-  "description": "It's mainly element is used to display action toolbar.",
+  "name": "@dreamworld/dw-action-toolbar",
+  "version": "1.0.0",
+  "description": "LitElement WebComponent to be used as action toolbar. Toolbar with tool buttons & drop-down both.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/DreamworldSolutions/dw-action-toolbar#readme",
   "dependencies": {
-    "@dw/dw-select": "^1.0.8",
+    "@dreamworld/dw-select": "^1.2.0",
     "@dw/flex-layout": "^1.0.5",
     "lit-element": "^2.2.1",
     "lodash-es": "^4.17.15"
