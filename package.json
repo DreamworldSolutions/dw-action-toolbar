@@ -1,6 +1,6 @@
 {
   "name": "@dreamworld/dw-action-toolbar",
-  "version": "1.0.1",
+  "version": "0.0.0-development",
   "description": "LitElement WebComponent to be used as action toolbar. Toolbar with tool buttons & drop-down both.",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,10 @@
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
-    "@webcomponents/webcomponentsjs": "^2.2.10"
+    "@webcomponents/webcomponentsjs": "^2.2.10",
+    "semantic-release": "beta"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
