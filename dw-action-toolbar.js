@@ -119,6 +119,7 @@ export class DwActionToolbar extends DwSelect {
         .closeIcon=${this.closeIcon}
         @value-changed=${this._valueChanged}
         @opened-changed=${this._openedChanged}
+        @action="${this._triggerActionEvent}"
       ></dw-action-toolbar-menu>
     `;
   }
@@ -130,7 +131,6 @@ export class DwActionToolbar extends DwSelect {
    */
   _valueChanged(e){
     super._valueChanged(e);
-    this._triggerActionEvent(e);
   }
 
   /**
@@ -141,7 +141,7 @@ export class DwActionToolbar extends DwSelect {
   _openedChanged(e) {
     super._openedChanged(e);
     if(!this.opened) {
-      this.selected = null;
+      this.value = null;
     }
   }
 
