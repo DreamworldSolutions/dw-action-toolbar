@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/DreamworldSolutions/dw-action-toolbar#readme",
   "dependencies": {
-    "@dreamworld/dw-select": "^1.2.0",
+    "@dreamworld/dw-select": "bug-action-trigger",
     "@dw/flex-layout": "^1.0.5",
     "lit-element": "^2.2.1",
     "lodash-es": "^4.17.15"
