@@ -123,7 +123,7 @@ export class DwActionToolbar extends DwSelect {
       ></dw-action-toolbar-menu>
     `;
   }
-  
+
   /**
    * @param {*} e event data
    * Trigger action event.
@@ -141,7 +141,7 @@ export class DwActionToolbar extends DwSelect {
   _openedChanged(e) {
     super._openedChanged(e);
     if(!this.opened) {
-      this.value = null;
+      this.selected = null;
     }
   }
 
