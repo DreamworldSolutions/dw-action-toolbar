@@ -2,7 +2,7 @@
   "name": "@dreamworld/dw-action-toolbar",
   "version": "0.0.0-development",
   "description": "LitElement WebComponent to be used as action toolbar. Toolbar with tool buttons & drop-down both.",
-  "main": "index.js",
+  "main": "dw-action-toolbar.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
