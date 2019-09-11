@@ -50,7 +50,7 @@ export class DwActionToolbarMenu extends DwSelectDialog {
 
   static get properties() {
     return {
-      
+
       /**
        * Input property. Close icon name.
        */
@@ -58,13 +58,13 @@ export class DwActionToolbarMenu extends DwSelectDialog {
     }
   }
 
-  _renderDialogHeader(){
-    return html `
+  _renderDialogHeader() {
+    return html`
       <div class="dialog-header">
         <div class="title headline6">${this.dialogTitle}</div>
         <div class="back-icon " @click=${this._backClicked} tabindex="0" @keydown=${this._onBackBtnKeyDown}>${this._getCloseIcon()}</div>
         ${!this.singleSelect ? html`
-          ${this._value.length ? html `<div class="count subtitle2">${this._value.length}</div>` : html ``}
+          ${this._value.length ? html`<div class="count subtitle2">${this._value.length}</div>` : html``}
         ` : ''}
       </div>
       <div class="border"></div>
@@ -76,6 +76,26 @@ export class DwActionToolbarMenu extends DwSelectDialog {
    */
   _getCloseIcon() {
     return getIcon(this.closeIcon);
+  }
+
+  /**
+   * Override method of `dw-select-dialog`.
+   */
+  _itemClicked(e, model) {
+    super._itemClicked(e, model);
+    this._triggerAction();
+  }
+
+  /**
+   * Triggers `action` event.
+   */
+  _triggerAction() {
+    let actionEvent = new CustomEvent('action', {
+      detail: {
+        value: this.value,
+      }
+    });
+    this.dispatchEvent(actionEvent);
   }
 }
 customElements.define('dw-action-toolbar-menu', DwActionToolbarMenu);
