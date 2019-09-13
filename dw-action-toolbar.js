@@ -141,7 +141,7 @@ export class DwActionToolbar extends DwSelect {
   _openedChanged(e) {
     super._openedChanged(e);
     if(!this.opened) {
-      this.selected = null;
+      this.value = [];
     }
   }
 
