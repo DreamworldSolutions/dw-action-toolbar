@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/DreamworldSolutions/dw-action-toolbar#readme",
   "dependencies": {
+    "@dreamworld/dw-icon": "^1.0.1",
     "@dreamworld/dw-select": "replace-icon-to-dw-icon-button",
     "@dreamworld/flex-layout": "^1.0.0",
     "lit-element": "^2.2.1",

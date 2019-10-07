@@ -80,7 +80,7 @@ export class DwActionToolbar extends DwSelect {
     this.itemValue="name"
     this.itemLabel="label"
     this.hAlign = "right";
-    this.triggerIcon = 'navigation.more_vert';
+    this.triggerIcon = 'more_vert';
   }
 
   /**
