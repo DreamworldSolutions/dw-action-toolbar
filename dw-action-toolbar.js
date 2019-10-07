@@ -1,5 +1,5 @@
 import { html, css } from 'lit-element';
-import { flexLayout, alignment } from '@dw/flex-layout';
+import { flexLayout, alignment } from '@dreamworld/flex-layout';
 import { DwSelect } from '@dreamworld/dw-select/dw-select'
 import isEmpty from 'lodash-es/isEmpty';
 import clone from 'lodash-es/clone';

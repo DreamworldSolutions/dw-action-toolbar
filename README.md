@@ -8,12 +8,12 @@
 
 ## Install
 
-`npm install --save @dw/dw-action-toolbar`
+`npm install --save @dreamworld/dw-action-toolbar`
 
 ## Usage
 
 ```javascript
-import '@dw/dw-action-toolbar/action-toolbar';
+import '@dreamworld/dw-action-toolbar/action-toolbar';
 ```
 ## Events
 - Fires `action` event with action name.

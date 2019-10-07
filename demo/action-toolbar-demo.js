@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit-element';
-import { flexLayout, alignment } from '@dw/flex-layout';
+import { flexLayout, alignment } from '@dreamworld/flex-layout';
 import '../action-toolbar';
-import {materialStyles} from'@dw/material-styles/material-styles';
+import {materialStyles} from'@dreamworld/material-styles/material-styles';
 class ActionToolbarDemo extends LitElement {
   static get styles() {
     return [
