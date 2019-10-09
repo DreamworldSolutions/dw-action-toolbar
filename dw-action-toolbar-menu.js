@@ -1,6 +1,6 @@
 import { html, css } from 'lit-element';
 import { DwSelectDialog } from '@dreamworld/dw-select/dw-select-dialog';
-import '@dreamworld/dw-icon/dw-icon';
+import '@dreamworld/dw-icon-button/dw-icon-button';
 
 export class DwActionToolbarMenu extends DwSelectDialog {
   static get styles() {
@@ -27,8 +27,8 @@ export class DwActionToolbarMenu extends DwSelectDialog {
         }
 
         .header .dialog-header .back-icon {
-          height: var(--action-toolbar-menu-header-back-icon-width, 28px);
-          width: var(--action-toolbar-menu-header-back-icon-height, 28px);
+          height: var(--action-toolbar-menu-header-back-icon-width, 40px);
+          width: var(--action-toolbar-menu-header-back-icon-height, 40PX);
           padding: var(--action-toolbar-menu-header-back-icon-padding, 0);
           margin: var(--action-toolbar-menu-header-back-icon-margin, 0px -4px 0px 0px);
         }
@@ -63,7 +63,7 @@ export class DwActionToolbarMenu extends DwSelectDialog {
       <div class="dialog-header">
         <div class="title headline6">${this.dialogTitle}</div>
         <div class="back-icon " @click=${this._backClicked} tabindex="0" @keydown=${this._onBackBtnKeyDown}>
-          <dw-icon name="${this.closeIcon}"></dw-icon>
+          <dw-icon-button icon="${this.closeIcon}"></dw-icon-button>
         </div>
         ${!this.singleSelect ? html`
           ${this._value.length ? html `<div class="count subtitle2">${this._value.length}</div>` : html ``}
