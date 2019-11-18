@@ -18,7 +18,9 @@ export class DwActionToolbarMenu extends DwSelectDialog {
         }
 
         .header .dialog-header {
-          padding: var(--action-toolbar-menu-header-padding, 0px 20px);
+          height: 56px;
+          box-sizing: border-box;
+          padding: var(--action-toolbar-menu-header-padding, 8px 8px 8px 16px);
           margin: var(--action-toolbar-menu-header-margin, 0px);
         }
 
@@ -27,8 +29,8 @@ export class DwActionToolbarMenu extends DwSelectDialog {
         }
 
         .header .dialog-header .back-icon {
-          height: var(--action-toolbar-menu-header-back-icon-width, 28px);
-          width: var(--action-toolbar-menu-header-back-icon-height, 28px);
+          height: var(--action-toolbar-menu-header-back-icon-width, 40px);
+          width: var(--action-toolbar-menu-header-back-icon-height, 40px);
           padding: var(--action-toolbar-menu-header-back-icon-padding, 0);
           margin: var(--action-toolbar-menu-header-back-icon-margin, 0px -4px 0px 0px);
         }
@@ -37,7 +39,7 @@ export class DwActionToolbarMenu extends DwSelectDialog {
           height: var(--action-toolbar-menu-header-back-icon-svg-width, 24px);
           width: var(--action-toolbar-menu-header-back-icon-svg-height, 24px);
           fill: var(--action-toolbar-menu-header-back-icon-svg-fill-color);
-          padding: var(--action-toolbar-menu-header-back-icon-svg-padding, 0);
+          padding: var(--action-toolbar-menu-header-back-icon-svg-padding, 8px);
           margin: var(--action-toolbar-menu-header-back-icon-svg-margin, 0);
         }
       `];
