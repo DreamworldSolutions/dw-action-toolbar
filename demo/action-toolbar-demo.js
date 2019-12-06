@@ -1,11 +1,9 @@
 import { LitElement, html, css } from 'lit-element';
 import { flexLayout, alignment } from '@dreamworld/flex-layout';
-import '../action-toolbar';
-import {materialStyles} from'@dreamworld/material-styles/material-styles';
+import '../dw-action-toolbar';
 class ActionToolbarDemo extends LitElement {
   static get styles() {
     return [
-      materialStyles,
       flexLayout,
       alignment,
       css`
@@ -35,14 +33,14 @@ class ActionToolbarDemo extends LitElement {
   
   render() {
     return html`
-      <action-toolbar @action=${this._action}
+      <dw-action-toolbar @action=${this._action}
         .dialogTitle=${this.dialogTitle}
         .actions=${this.actions}
         .disabledActions=${this.disabledActions}
         .hiddenActions=${this.hiddenActions}
         .mobileMode=${this.mobileMode}
       >
-      </action-toolbar>
+      </dw-action-toolbar>
     `;
   }
 

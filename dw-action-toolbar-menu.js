@@ -1,6 +1,6 @@
 import { html, css } from 'lit-element';
 import { DwSelectDialog } from '@dreamworld/dw-select/dw-select-dialog';
-import { getIcon } from 'icons';
+import '@dreamworld/dw-icon-button/dw-icon-button';
 
 export class DwActionToolbarMenu extends DwSelectDialog {
   static get styles() {
@@ -45,9 +45,9 @@ export class DwActionToolbarMenu extends DwSelectDialog {
       `];
   }
 
-  constructor() {
-    super();
-    this.closeIcon = 'navigation.close';
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+    this.closeIcon = 'close';
   }
 
   static get properties() {
@@ -56,28 +56,21 @@ export class DwActionToolbarMenu extends DwSelectDialog {
       /**
        * Input property. Close icon name.
        */
-      closeIcon: String
+      closeIcon: { type : String }
     }
   }
 
-  _renderDialogHeader(){
+  _renderDialogHeader() {
     return html `
       <div class="dialog-header">
         <div class="title headline6">${this.dialogTitle}</div>
-        <div class="back-icon " @click=${this._backClicked} tabindex="0" @keydown=${this._onBackBtnKeyDown}>${this._getCloseIcon()}</div>
+        <dw-icon-button class="back-icon" icon="${this.closeIcon}" @click=${this._backClicked} tabindex="0" @keydown=${this._onBackBtnKeyDown}></dw-icon-button>
         ${!this.singleSelect ? html`
           ${this._value.length ? html `<div class="count subtitle2">${this._value.length}</div>` : html ``}
         ` : ''}
       </div>
       <div class="border"></div>
     `
-  }
-
-  /**
-   * @returns close icon template.
-   */
-  _getCloseIcon() {
-    return getIcon(this.closeIcon);
   }
 }
 customElements.define('dw-action-toolbar-menu', DwActionToolbarMenu);
