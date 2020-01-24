@@ -30,29 +30,91 @@ export class DwActionToolbar extends DwSelect {
     return {
       /**
        * Input property.
-       * Represent master action of toolbar.
-       * e.g. [{name: 'ADD', label: 'Add', icon: 'content.add'}, {name: 'EDIT', label: 'Edit', icon: 'editor.edit'}]
+       * Represent total available actions in the toolbar.
+       * e.g. 
+       * ```
+       * [{name: 'ADD', label: 'Add', icon: 'content.add'}, 
+       *    {name: 'EDIT', label: 'Edit', icon: 'editor.edit', tooltip: 'Edit your Record'}]
+       * ``
+       * 
+       * Where, `tooltip` is optional. If specified, title tooltip is shown for for this action.
+       * Actions specified here can be further customized through other configuration properties like `primaryActions`,
+       * `disabledActions`, `hiddenActions` etc.
        */
       actions: Array,
+      
+
       /**
        * Input property.
-       * Disabled actions from master actions.
-       * Disabled action show tooltip.
+       * Primary actions are rendered as icon-buttons. While other actions are shown in the drop-down menu.
+       * Name of the actions which are to be shown as primary. e.g. `['EDIT']`
+       * Default value: `[]`.
+       * Note:: These actions must be declared in the `actions` property.
+       */
+      primaryActions: Array,
+
+      /**
+       * Input property.
+       * Specifies actiosn which are disabled. 
        * e.g. {'DELETE': 'User has no write permission'}
+       * key = action name, value = Tooltip message to be shown for that action.
+       * Note:: These actions must be declared in the `actions` property.
        */
       disabledActions: Object,
+
       /**
        * Input property.
        * Hide actions from master actions.
        * e.g. ['ADD', 'DELETE']
        */
       hiddenActions: Array,
+
       /**
        * Input property.
-       * Passed close icon name.
-       * Show icon in dialog header based on value.
+       * Size of the icon button (in pixels) used for primary actions.
+       * Default value `48`.
        */
-      closeIcon: String
+      primaryActionButtonSize: Number,
+
+      /**
+       * Input Property.
+       * Size of the icon (in pixels) used for primary actions.
+       * Default value `24`.
+       */
+      primaryActionIconSize: Number,
+
+      /**
+       * Input property.
+       * Size of the icon (in pixels) used for the list item (in drop-down).
+       * Default value `24`.
+       */
+      listItemIconSize: Number,
+
+      /**
+       * Input property.
+       * Name of the icon for the close button shown in dialog.
+       */
+      closeIcon: String,
+
+      /**
+       * Input property.
+       * Set it to `true` when close-icon is not needed in drop-down.
+       */
+      noCloseIcon: Boolean,
+
+      /**
+       * Input property.
+       * Name of the icon used for the trigger button which opens drop-down.
+       * Default value: `vert-more`.
+       */
+      triggerIcon: String,
+
+      /**
+       * Input + Output property. True if the dropdown is open, false otherwise.
+       */
+      opened: { type: Boolean, reflect: true },
+
+
     };
   }
 
@@ -81,6 +143,10 @@ export class DwActionToolbar extends DwSelect {
     this.itemLabel="label"
     this.hAlign = "right";
     this.triggerIcon = 'more_vert';
+    this.primaryActions = [];
+    this.primaryActionButtonSize = 48;
+    this.primaryActionIconSize = 24;
+    this.listItemIconSize = 24;
   }
 
   /**
@@ -134,11 +200,12 @@ export class DwActionToolbar extends DwSelect {
   }
 
   /**
-   * @param {*} e event data.
-   * Clear selected item on dialog closed.
-   * @override
+   * Event listener. Invoked when drop-down is opened/closed.
+   * Current value of drop-down can be retrieved from the property `opened`.
+   * It clears selected item on dialog closed.
+   * It's a protected method, so can be used by the child-class to do any custom work on it.
    */
-  _openedChanged(e) {
+  _openedChanged() {
     super._openedChanged(e);
     if(!this.opened) {
       this.value = [];
