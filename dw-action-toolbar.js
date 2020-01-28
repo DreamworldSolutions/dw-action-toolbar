@@ -49,7 +49,7 @@ export class DwActionToolbar extends DwSelect {
        * Primary actions are rendered as icon-buttons. While other actions are shown in the drop-down menu.
        * Name of the actions which are to be shown as primary. e.g. `['EDIT']`
        * Default value: `[]`.
-       * Note:: These actions must be declared in the `actions` property.
+       * Note:: These actions must be declared in the `actions` property, otherwise it will be simply ignored.
        */
       primaryActions: Array,
 
@@ -79,6 +79,7 @@ export class DwActionToolbar extends DwSelect {
       /**
        * Input Property.
        * Size of the icon (in pixels) used for primary actions.
+       * vert-more button, which opens secondary actions drop-down, also honors this property.
        * Default value `24`.
        */
       primaryActionIconSize: Number,
@@ -199,6 +200,11 @@ export class DwActionToolbar extends DwSelect {
     this._triggerActionEvent(e);
   }
 
+  _onSelectOpenedChanged(e) {
+    //TODO: this.opened = something;
+    this._openedChanged();
+  }
+
   /**
    * Event listener. Invoked when drop-down is opened/closed.
    * Current value of drop-down can be retrieved from the property `opened`.
@@ -206,7 +212,6 @@ export class DwActionToolbar extends DwSelect {
    * It's a protected method, so can be used by the child-class to do any custom work on it.
    */
   _openedChanged() {
-    super._openedChanged(e);
     if(!this.opened) {
       this.value = [];
     }
