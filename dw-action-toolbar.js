@@ -98,6 +98,13 @@ export class DwActionToolbar extends DwSelect {
       closeIcon: String,
 
       /**
+       * Possible values: "left" or "right".
+       * Has no effect when `noCloseIcon=true`.
+       * Default value: `right`.
+       */
+      closeIconPosition: String,
+
+      /**
        * Input property.
        * Set it to `true` when close-icon is not needed in drop-down.
        */
@@ -148,6 +155,7 @@ export class DwActionToolbar extends DwSelect {
     this.primaryActionButtonSize = 48;
     this.primaryActionIconSize = 24;
     this.listItemIconSize = 24;
+    this.closeIconPosition = 'right';
   }
 
   /**
