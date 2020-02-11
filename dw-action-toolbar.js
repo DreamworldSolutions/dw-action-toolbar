@@ -1,29 +1,27 @@
+import { LitElement } from '@dw/pwa-helpers/lit-element';
 import { html, css } from 'lit-element';
-import { flexLayout, alignment } from '@dreamworld/flex-layout';
-import { DwSelect } from '@dreamworld/dw-select/dw-select'
+import { repeat } from 'lit-html/directives/repeat.js';
+import * as layoutLiterals from '@dreamworld/flex-layout';
+import '@dreamworld/dw-select/dw-select'
 import isEmpty from 'lodash-es/isEmpty';
 import clone from 'lodash-es/clone';
-import './dw-action-toolbar-menu';
+import filter from 'lodash-es/filter';
 
-export class DwActionToolbar extends DwSelect {
+export class DwActionToolbar extends LitElement {
   static get styles() {
-    return [
-      super.styles,
-      flexLayout,
-      alignment,
-      css`
-        :host {
-          --dw-select-item-check-icon-display: none;
-        }
-        
-        .main-container #dropdownContainer .trigger-icon > svg {
-          height: var(--action-toolbar-trigger-icon-svg-width, 24px);
-          width: var(--action-toolbar-trigger-icon-svg-height, 24px);
-          fill: var(--action-toolbar-trigger-icon-svg-fill-color);
-          padding: var(--action-toolbar-trigger-icon-svg-padding, 0);
-          margin: var(--action-toolbar-trigger-icon-svg-margin, 0);
-        }
-    `];
+    return css`
+      :host {
+        ${layoutLiterals.flexLayoutMixin.displayFlex};
+        ${layoutLiterals.flexLayoutMixin.horizontal};
+        ${layoutLiterals.alignmentMixin.centerAligned};
+      }
+
+      .primary-action-btn{
+        margin-left: 8px;
+      }
+
+
+      `
   }
 
   static get properties() {
@@ -41,7 +39,7 @@ export class DwActionToolbar extends DwSelect {
        * Actions specified here can be further customized through other configuration properties like `primaryActions`,
        * `disabledActions`, `hiddenActions` etc.
        */
-      actions: Array,
+      actions: {type: Array},
       
 
       /**
@@ -51,7 +49,17 @@ export class DwActionToolbar extends DwSelect {
        * Default value: `[]`.
        * Note:: These actions must be declared in the `actions` property, otherwise it will be simply ignored.
        */
-      primaryActions: Array,
+      primaryActions: {type: Array},
+
+      /**
+       * Computed primary actions.
+       */
+      _primaryActions: { type: Array },
+
+      /**
+       * Computed Secondary actions.
+       */
+      _secondaryActions: { type: Array },
 
       /**
        * Input property.
@@ -60,21 +68,21 @@ export class DwActionToolbar extends DwSelect {
        * key = action name, value = Tooltip message to be shown for that action.
        * Note:: These actions must be declared in the `actions` property.
        */
-      disabledActions: Object,
+      disabledActions: { type: Object },
 
       /**
        * Input property.
        * Hide actions from master actions.
        * e.g. ['ADD', 'DELETE']
        */
-      hiddenActions: Array,
+      hiddenActions: { type: Array },
 
       /**
        * Input property.
        * Size of the icon button (in pixels) used for primary actions.
        * Default value `48`.
        */
-      primaryActionButtonSize: Number,
+      primaryActionButtonSize: { type: Number },
 
       /**
        * Input Property.
@@ -82,47 +90,113 @@ export class DwActionToolbar extends DwSelect {
        * vert-more button, which opens secondary actions drop-down, also honors this property.
        * Default value `24`.
        */
-      primaryActionIconSize: Number,
+      primaryActionIconSize: { type: Number },
 
       /**
        * Input property.
        * Size of the icon (in pixels) used for the list item (in drop-down).
        * Default value `24`.
        */
-      listItemIconSize: Number,
+      listItemIconSize: { type: Number },
 
       /**
        * Input property.
        * Name of the icon for the close button shown in dialog.
        */
-      closeIcon: String,
+      closeIcon: { type: String },
 
       /**
        * Possible values: "left" or "right".
        * Has no effect when `noCloseIcon=true`.
        * Default value: `right`.
        */
-      closeIconPosition: String,
+      closeIconPosition: { type: String },
 
       /**
        * Input property.
        * Set it to `true` when close-icon is not needed in drop-down.
        */
-      noCloseIcon: Boolean,
+      noCloseIcon: { type: Boolean },
 
       /**
        * Input property.
        * Name of the icon used for the trigger button which opens drop-down.
        * Default value: `vert-more`.
        */
-      triggerIcon: String,
+      triggerIcon: { type: String },
 
       /**
        * Input + Output property. True if the dropdown is open, false otherwise.
        */
       opened: { type: Boolean, reflect: true },
 
+      /**
+       * Input property. Path for label of the item. If items is an array of objects, the itemLabel is used to fetch the displayed string label for each item.
+       * The item label is also used for matching items when processing user input, i.e., for filtering .
+       */
+      dialogItemLabel: { type: String },
+      /**
+       * Input property. Path for the value of the item. If items is an array of objects, the itemValue: is used to fetch the string value for the selected item.
+       */
+      dialogItemValue: { type: String },
 
+      /**
+       * Input property. Display multiselect in mobile mode (full screen) and no keyboard support
+       * Default value: false
+       */
+      mobileMode: { type: Boolean, reflect: true, attribute: 'mobile-mode' },
+      /**
+       * Input property. When true, header will be hidde. header contains Back button, Dialog title, count
+       * Default value: false
+       */
+      noHeader: { type: Boolean, reflect: true, attribute: 'no-header' },
+
+      /**
+       * Input property. The title for dialog
+       */
+      dialogTitle: { type: String },
+
+      /**
+       * Input property.
+       * When true, Show dialog in full screen even if items are very less in mobile mode
+       * Default value: false
+       */
+      alwaysFullScreenInMobile: { type: Boolean },
+
+      /**
+       * Input property.
+       * When `true`, Remove defualt trigger element
+       * Provide your custom trigger element as a slot.
+       */
+      customTrigger: { type: Boolean, reflect: true, attribute: 'custom-trigger' },
+      
+      /**
+       * Input property. The orientation against which to align the menu dropdown horizontally relative to the dropdown trigger.
+       * Possible values: "left", "right"
+       * Default value: "left"
+       */
+      dialogHAlign: String,
+      /**
+       * Input property. The orientation against which to align the menu dropdown vertically relative to the dropdown trigger.
+       * Possible values: "top", "bottom"
+       * Default value: "top"
+       */
+      dialogVAlign: String,
+      /**
+       * Input property. The horizontal offset in pixels. Negtaive numbers allowed.
+       * Default value: 0
+       */
+      dialogHOffset: Number,
+      /**
+       * Input property. The vertical offset in pixels. Negtaive numbers allowed.
+       * Default value: 0
+       */
+      dialogVOffset: Number,
+
+      /**
+       * It can be of either String or Array type.
+       */
+      _value: { type: Array },
     };
   }
 
@@ -144,72 +218,87 @@ export class DwActionToolbar extends DwSelect {
     this._computeItems();
   }
 
+  get primaryActions() {
+    return this.__primaryActions;
+  }
+
+  set primaryActions(val) {
+    this.__primaryActions = val;
+    this._computeItems();
+  }
+
   constructor() {
     super();
     this.singleSelect = true;
-    this.itemValue="name"
-    this.itemLabel="label"
-    this.hAlign = "right";
+    this.dialogItemValue="name"
+    this.dialogItemLabel="label"
     this.triggerIcon = 'more_vert';
     this.primaryActions = [];
+    this._primaryActions = [];
+    this._secondaryActions = [];
     this.primaryActionButtonSize = 48;
     this.primaryActionIconSize = 24;
     this.listItemIconSize = 24;
+    this.closeIcon = 'close';
     this.closeIconPosition = 'right';
+    this.dialogHAlign = 'left';
+    this.dialogVAlign = 'top';
   }
 
-  /**
-   * @returns {*} Dialog template.
-   * @override
-   * @protected
-   */
-  _renderSelectDialog() {
+  render() {
     return html`
-      <dw-action-toolbar-menu
-        .items=${this.items}
-        .disabledItems=${this.disabledActions}
-        .itemLabel=${this.itemLabel}
-        .itemValue=${this.itemValue}
-        .positionTarget=${this._positionTarget}
-        .noHeader=${this.noHeader}
-        .mobileMode=${this.mobileMode}
-        .filterPlaceholder=${this.filterPlaceholder}
-        .opened=${this.opened}
-        .hAlign=${this.hAlign}
-        .vAlign=${this.vAlign}
-        .hOffset=${this.hOffset}
-        .vOffset=${this.vOffset}
-        .singleSelect=${this.singleSelect}
-        .value=${this.value}
-        .groupBy=${this.groupBy}
-        .allowFilter=${this.allowFilter}
-        .groupByOrder=${this.groupByOrder}
-        .groupText=${this.groupText}
-        .dialogTitle=${this.dialogTitle}
-        .hideSelectAllBtn="${this.hideSelectAllBtn}"
-        .alwaysFullScreenInMobile=${this.alwaysFullScreenInMobile}
-        .hideResetBtn="${this.hideResetBtn}"
-        .stickySelectionButtons="${this.stickySelectionButtons}"
-        .selectionButtonsAlign="${this.selectionButtonsAlign}"
-        .closeIcon=${this.closeIcon}
-        @value-changed=${this._valueChanged}
-        @opened-changed=${this._openedChanged}
-      ></dw-action-toolbar-menu>
-    `;
-  }
-  
-  /**
-   * @param {*} e event data
-   * Trigger action event.
-   * @override
-   */
-  _valueChanged(e){
-    super._valueChanged(e);
-    this._triggerActionEvent(e);
+      ${this._primaryActions && this._primaryActions.length ? html`
+          ${repeat(this._primaryActions, (action) => action[this.dialogItemValue], (action, index) => html`
+          <dw-icon-button 
+            class="primary-action-btn"
+            .iconSize="${this.primaryActionIconSize}" 
+            .buttonSize="${this.primaryActionButtonSize}"
+            title="${action.tooltip ? action.tooltip : ''}"
+            name="${action[this.dialogItemValue]}"
+            icon="${action.icon}" 
+            @click=${this._onPrimaryActionClick}>
+          </dw-icon-button>
+          `)}
+        ` : ''}
+        ${this._secondaryActions && this._secondaryActions.length ? html`
+          <dw-select 
+            ?custom-trigger="${this.customTrigger}"
+            .opened="${this.opened}"
+            .singleSelect="${true}"
+            .triggerIcon="${this.triggerIcon}"
+            .triggerButtonSize="${this.primaryActionButtonSize}"
+            .triggerIconSize="${this.primaryActionIconSize}"
+            .backIcon="${this.closeIcon}"
+            .backIconPosition="${this.closeIconPosition}"
+            .noCloseIcon="${this.noCloseIcon}"
+            .items="${this._secondaryActions}"
+            .disabledItems="${this.disabledActions}"
+            .value="${this._value}"
+            .itemLabel="${this.dialogItemLabel}"
+            .itemValue="${this.dialogItemValue}"
+            .mobileMode="${this.mobileMode}"
+            .noHeader="${this.noHeader}"
+            .dialogTitle="${this.dialogTitle}"
+            .vAlign="${this.dialogVOffset}"
+            .hAlign="${this.dialogHOffset}"
+            .vOffset="${this.dialogVOffset}"
+            .hOffset="${this.dialogHOffset}"
+            .alwaysFullScreenInMobile="${this.alwaysFullScreenInMobile}"
+            @value-changed="${this._triggerActionEvent}"
+            @opened-changed="${this._onSelectOpenedChanged}">
+            <slot></slot>
+          </dw-select>
+        ` : ''
+      }
+    `
   }
 
+  /**
+   * Invoked on select-dialog opened change.
+   * @param {Object} e Event detail
+   */
   _onSelectOpenedChanged(e) {
-    //TODO: this.opened = something;
+    this.opened = e.detail.opened;
     this._openedChanged();
   }
 
@@ -221,8 +310,16 @@ export class DwActionToolbar extends DwSelect {
    */
   _openedChanged() {
     if(!this.opened) {
-      this.value = [];
+      this._value = [];
     }
+  }
+
+  /**
+   * Invoked on primary action click.
+   * @param {Object} e Event
+   */
+  _onPrimaryActionClick(e) {
+    this._triggerActionEvent({detail: {value: e.target.getAttribute('name')}})
   }
 
   /**
@@ -250,7 +347,13 @@ export class DwActionToolbar extends DwSelect {
     }
 
     let aActions = clone(this.actions);
-    this.items = this._removeHiddenActions(aActions);
+    const allVisibleActions = this._removeHiddenActions(aActions);
+    this._primaryActions = filter(allVisibleActions, (o) => {
+      return this.primaryActions.includes(o[this.dialogItemValue])
+    });
+    this._secondaryActions = filter(allVisibleActions, (o) => {
+      return !this.primaryActions.includes(o[this.dialogItemValue])
+    });
   }
 
   /**
@@ -270,6 +373,20 @@ export class DwActionToolbar extends DwSelect {
       }
     });
     return result;
+  }
+
+  /**
+   * Open action toolbar.
+   */
+  open() {
+    this.shadowRoot.querySelector('dw-select') && this.shadowRoot.querySelector('dw-select').open();
+  }
+
+  /**
+   * Close action toolbar.
+   */
+  close() {
+    this.shadowRoot.querySelector('dw-select') && this.shadowRoot.querySelector('dw-select').close();
   }
 }
 
