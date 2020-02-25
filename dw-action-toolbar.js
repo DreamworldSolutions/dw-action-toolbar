@@ -6,6 +6,7 @@ import '@dreamworld/dw-select/dw-select'
 import isEmpty from 'lodash-es/isEmpty';
 import clone from 'lodash-es/clone';
 import filter from 'lodash-es/filter';
+import { styleMap } from 'lit-html/directives/style-map.js';
 
 export class DwActionToolbar extends LitElement {
   static get styles() {
@@ -19,8 +20,6 @@ export class DwActionToolbar extends LitElement {
       .primary-action-btn{
         margin: 0px 8px;
       }
-
-
       `
   }
 
@@ -243,6 +242,7 @@ export class DwActionToolbar extends LitElement {
           ${repeat(this._primaryActions, (action) => action.name, (action, index) => html`
           <dw-icon-button 
             class="primary-action-btn"
+            style="${styleMap(this._setPrimaryActionIconColor(action))}"
             .iconSize="${this.primaryActionIconSize}" 
             .buttonSize="${this.primaryActionButtonSize}"
             title="${action.tooltip ? action.tooltip : ''}"
@@ -283,6 +283,21 @@ export class DwActionToolbar extends LitElement {
         ` : ''
       }
     `
+  }
+
+  /**
+   * Sets icon color of primary action.
+   * @param {Object} item Action 
+   */
+  _setPrimaryActionIconColor(item) {
+    if (item.iconColor) {
+      if (item.iconColor.startsWith('-')) {
+        return { '--dw-icon-color': `var(${item.iconColor})` };
+      } else {
+        return { '--dw-icon-color': `${item.iconColor}` };
+      }
+    }
+    return {};
   }
 
   /**

@@ -28,7 +28,7 @@
     "@dreamworld/flex-layout" "^1.0.0"
     lit-element "^2.2.0"
 
-"@dreamworld/dw-icon@1.0.2", "@dreamworld/dw-icon@^1.0.0", "@dreamworld/dw-icon@^1.1.0":
+"@dreamworld/dw-icon@1.0.2", "@dreamworld/dw-icon@^1.0.0", "@dreamworld/dw-icon@^1.1.0", "@dreamworld/dw-icon@^1.2.0":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@dreamworld/dw-icon/-/dw-icon-1.0.2.tgz#a7e2199f31cb2163edc10e65a08e3521efc806a9"
   integrity sha512-uKtaG3JBWjJ7yGr1eKrcUVLR/fyR7W+/0uTXYfaG01WyZBo0SVjJvss2TBS/7e9oKrgYvy+uioAs1eOBQEhXnw==
@@ -44,10 +44,10 @@
     "@material/mwc-ripple" "^0.7.1"
     lit-element "^2.2.0"
 
-"@dreamworld/dw-select@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-select/-/dw-select-1.4.0.tgz#8deefab6854c0926c200f55667048ccc764a12e9"
-  integrity sha512-GVuwePdKETEirrAK+O7s33jKsyP/bi8gaOs4UMu/6OGo2JHeHFZPokh86qGJwJw9mCCHVYlXxnC/eo9BsmfYIQ==
+"@dreamworld/dw-select@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-select/-/dw-select-1.5.0.tgz#3bbf8a406f00cf0161e32a7997dfcb78e8c14016"
+  integrity sha512-ahTP9vk58IKWnnFLPkT9Chigp1JMRq/1rolfHzXF/Y1b2nlERih2M8taUhg8OLtx+kLphFBJmL29pwjddEK+0g==
   dependencies:
     "@dreamworld/dw-button" "^1.0.6"
     "@dreamworld/dw-form" "^1.0.2"
