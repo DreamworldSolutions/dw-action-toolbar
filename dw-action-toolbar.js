@@ -131,22 +131,13 @@ export class DwActionToolbar extends LitElement {
       opened: { type: Boolean, reflect: true },
 
       /**
-       * Input property. Path for label of the item. If items is an array of objects, the itemLabel is used to fetch the displayed string label for each item.
-       * The item label is also used for matching items when processing user input, i.e., for filtering .
-       */
-      dialogItemLabel: { type: String },
-      /**
-       * Input property. Path for the value of the item. If items is an array of objects, the itemValue: is used to fetch the string value for the selected item.
-       */
-      dialogItemValue: { type: String },
-
-      /**
        * Input property. Display multiselect in mobile mode (full screen) and no keyboard support
        * Default value: false
        */
       mobileMode: { type: Boolean, reflect: true, attribute: 'mobile-mode' },
+
       /**
-       * Input property. When true, header will be hidde. header contains Back button, Dialog title, count
+       * Input property. When true, header will be hidden. header contains Back button, Dialog title, Selecte Items count.
        * Default value: false
        */
       noHeader: { type: Boolean, reflect: true, attribute: 'no-header' },
@@ -159,7 +150,7 @@ export class DwActionToolbar extends LitElement {
       /**
        * Input property.
        * When true, Show dialog in full screen even if items are very less in mobile mode
-       * Default value: false
+       * Default value: `false`
        */
       alwaysFullScreenInMobile: { type: Boolean },
 
@@ -176,17 +167,20 @@ export class DwActionToolbar extends LitElement {
        * Default value: "left"
        */
       dialogHAlign: String,
+
       /**
        * Input property. The orientation against which to align the menu dropdown vertically relative to the dropdown trigger.
        * Possible values: "top", "bottom"
        * Default value: "top"
        */
       dialogVAlign: String,
+
       /**
        * Input property. The horizontal offset in pixels. Negtaive numbers allowed.
        * Default value: 0
        */
       dialogHOffset: Number,
+
       /**
        * Input property. The vertical offset in pixels. Negtaive numbers allowed.
        * Default value: 0
@@ -230,8 +224,6 @@ export class DwActionToolbar extends LitElement {
   constructor() {
     super();
     this.singleSelect = true;
-    this.dialogItemValue="name"
-    this.dialogItemLabel="label"
     this.triggerIcon = 'more_vert';
     this.primaryActions = [];
     this._primaryActions = [];
@@ -248,13 +240,13 @@ export class DwActionToolbar extends LitElement {
   render() {
     return html`
       ${this._primaryActions && this._primaryActions.length ? html`
-          ${repeat(this._primaryActions, (action) => action[this.dialogItemValue], (action, index) => html`
+          ${repeat(this._primaryActions, (action) => action.name, (action, index) => html`
           <dw-icon-button 
             class="primary-action-btn"
             .iconSize="${this.primaryActionIconSize}" 
             .buttonSize="${this.primaryActionButtonSize}"
             title="${action.tooltip ? action.tooltip : ''}"
-            name="${action[this.dialogItemValue]}"
+            name="${action.name}"
             icon="${action.icon}" 
             @click=${this._onPrimaryActionClick}>
           </dw-icon-button>
@@ -274,8 +266,8 @@ export class DwActionToolbar extends LitElement {
             .items="${this._secondaryActions}"
             .disabledItems="${this.disabledActions}"
             .value="${this._value}"
-            .itemLabel="${this.dialogItemLabel}"
-            .itemValue="${this.dialogItemValue}"
+            .itemLabel="${"label"}"
+            .itemValue="${"name"}"
             .mobileMode="${this.mobileMode}"
             .noHeader="${this.noHeader}"
             .dialogTitle="${this.dialogTitle}"
@@ -349,10 +341,10 @@ export class DwActionToolbar extends LitElement {
     let aActions = clone(this.actions);
     const allVisibleActions = this._removeHiddenActions(aActions);
     this._primaryActions = filter(allVisibleActions, (o) => {
-      return this.primaryActions.includes(o[this.dialogItemValue])
+      return this.primaryActions.includes(o.name)
     });
     this._secondaryActions = filter(allVisibleActions, (o) => {
-      return !this.primaryActions.includes(o[this.dialogItemValue])
+      return !this.primaryActions.includes(o.name)
     });
   }
 
@@ -379,14 +371,16 @@ export class DwActionToolbar extends LitElement {
    * Open action toolbar.
    */
   open() {
-    this.shadowRoot.querySelector('dw-select') && this.shadowRoot.querySelector('dw-select').open();
+    let elSelect = this.shadowRoot.querySelector('dw-select');
+    elSelect && elSelect.open();
   }
 
   /**
    * Close action toolbar.
    */
   close() {
-    this.shadowRoot.querySelector('dw-select') && this.shadowRoot.querySelector('dw-select').close();
+    let elSelect = this.shadowRoot.querySelector('dw-select');
+    elSelect && elSelect.close();
   }
 }
 
