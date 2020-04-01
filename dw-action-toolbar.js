@@ -27,10 +27,10 @@ export class DwActionToolbar extends LitElement {
     return {
       /**
        * Input property.
-       * Represent total available actions in the toolbar.
+       * Represent total available actions / sub actions in the toolbar.
        * e.g. 
        * ```
-       * [{name: 'ADD', label: 'Add', icon: 'content.add'}, 
+       * [{name: 'ADD', label: 'Add', icon: 'content.add'}, {name: 'ADD', label: 'Add', icon: 'content.add', type: "collapsible", subActions: [{name: 'TOP', label: 'Move to top', icon: 'arrow_up'}]}, 
        *    {name: 'EDIT', label: 'Edit', icon: 'editor.edit', tooltip: 'Edit your Record'}]
        * ``
        * 
@@ -377,7 +377,9 @@ export class DwActionToolbar extends LitElement {
     aActions.forEach((action) => {
       if(this.hiddenActions.indexOf(action.name) === -1) {
         result.push(action);
+        //TODO: if action.type == 'collapsible" && actions.subActions.length, remove hidden actions from subActions as well.
       }
+        
     });
     return result;
   }
