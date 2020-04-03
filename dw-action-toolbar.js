@@ -364,7 +364,7 @@ export class DwActionToolbar extends LitElement {
   }
 
   /**
-   * Remove hidden action from `actions` property and return new action array.
+   * Remove hidden action from `actions/sub-actions` property and return new action array.
    * @returns {Array} New action withoud hidden actions.
    * @protected
    */
@@ -376,8 +376,16 @@ export class DwActionToolbar extends LitElement {
     let result = [];
     aActions.forEach((action) => {
       if(this.hiddenActions.indexOf(action.name) === -1) {
+        if (action.type === 'expandable' && action.subActions && action.subActions.length) {
+          const subActions = [];
+          action.subActions.forEach((action) => {
+            if (this.hiddenActions.indexOf(action.name) === -1) {
+              subActions.push(action);
+            }
+          });
+          action.subActions = subActions;
+        }
         result.push(action);
-        //TODO: if action.type == 'collapsible" && actions.subActions.length, remove hidden actions from subActions as well.
       }
         
     });
