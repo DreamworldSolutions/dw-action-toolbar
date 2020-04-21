@@ -368,13 +368,14 @@ export class DwActionToolbar extends LitElement {
    * @returns {Array} New action withoud hidden actions.
    * @protected
    */
-  _removeHiddenActions(aActions){
+  _removeHiddenActions(aActions) {
+    let actions = [...aActions];
     if(isEmpty(this.hiddenActions)) {
-      return aActions;
+      return actions;
     }
 
     let result = [];
-    aActions.forEach((action) => {
+    actions.forEach((action) => {
       if(this.hiddenActions.indexOf(action.name) === -1) {
         if (action.type === 'expandable' && action.subActions && action.subActions.length) {
           const subActions = [];
