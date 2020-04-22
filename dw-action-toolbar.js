@@ -27,10 +27,10 @@ export class DwActionToolbar extends LitElement {
     return {
       /**
        * Input property.
-       * Represent total available actions in the toolbar.
+       * Represent total available actions / sub actions in the toolbar.
        * e.g. 
        * ```
-       * [{name: 'ADD', label: 'Add', icon: 'content.add'}, 
+       * [{name: 'ADD', label: 'Add', icon: 'content.add'}, {name: 'ADD', label: 'Add', icon: 'content.add', type: "collapsible", subActions: [{name: 'TOP', label: 'Move to top', icon: 'arrow_up'}]}, 
        *    {name: 'EDIT', label: 'Edit', icon: 'editor.edit', tooltip: 'Edit your Record'}]
        * ``
        * 
@@ -364,20 +364,31 @@ export class DwActionToolbar extends LitElement {
   }
 
   /**
-   * Remove hidden action from `actions` property and return new action array.
+   * Remove hidden action from `actions/sub-actions` property and return new action array.
    * @returns {Array} New action withoud hidden actions.
    * @protected
    */
-  _removeHiddenActions(aActions){
+  _removeHiddenActions(aActions) {
+    let actions = [...aActions];
     if(isEmpty(this.hiddenActions)) {
-      return aActions;
+      return actions;
     }
 
     let result = [];
-    aActions.forEach((action) => {
+    actions.forEach((action) => {
       if(this.hiddenActions.indexOf(action.name) === -1) {
+        if (action.type === 'expandable' && action.subActions && action.subActions.length) {
+          const subActions = [];
+          action.subActions.forEach((action) => {
+            if (this.hiddenActions.indexOf(action.name) === -1) {
+              subActions.push(action);
+            }
+          });
+          action= {...action, subActions};
+        }
         result.push(action);
       }
+        
     });
     return result;
   }
