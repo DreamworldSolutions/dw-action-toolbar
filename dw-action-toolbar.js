@@ -384,7 +384,7 @@ export class DwActionToolbar extends LitElement {
               subActions.push(action);
             }
           });
-          action.subActions = subActions;
+          action= {...action, subActions};
         }
         result.push(action);
       }
