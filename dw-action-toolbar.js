@@ -187,6 +187,27 @@ export class DwActionToolbar extends LitElement {
       dialogVOffset: Number,
 
       /**
+       * Input property
+       * Represents name of the query params to be add when dialog is opened
+       */
+      dialogActionName: { type: String },
+
+      /**
+       * Input property
+       * Represents value of the given `actionName` param
+       * e.g. if actionName is 'action' and `actionValue` is 'edit' then in URL action=edit will be added
+       */
+      dialogActionValue: { type: String },
+
+      /**
+       * Input property
+       * Represents the location at where action params will be added.
+       * Possible values: `hash` or `queryParams`
+       * Default value is `queryParams`
+       */
+      dialogActionLocation: { type: String },
+
+      /**
        * It can be of either String or Array type.
        */
       _value: { type: Array },
@@ -276,6 +297,9 @@ export class DwActionToolbar extends LitElement {
             .vOffset="${this.dialogVOffset}"
             .hOffset="${this.dialogHOffset}"
             .alwaysFullScreenInMobile="${this.alwaysFullScreenInMobile}"
+            .actionName="${this.dialogActionName}"
+            .actionValue="${this.dialogActionValue}"
+            .location="${this.dialogActionLocation}"
             @value-changed="${this._triggerActionEvent}"
             @opened-changed="${this._onSelectOpenedChanged}">
             <slot></slot>

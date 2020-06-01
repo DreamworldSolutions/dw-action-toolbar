@@ -39,6 +39,8 @@ class ActionToolbarDemo extends LitElement {
         .disabledActions=${this.disabledActions}
         .hiddenActions=${this.hiddenActions}
         .mobileMode=${this.mobileMode}
+        dialogActionName="action"
+        dialogActionValue="filter"
       >
       </dw-action-toolbar>
     `;
