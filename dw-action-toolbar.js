@@ -5,6 +5,7 @@ import * as layoutLiterals from '@dreamworld/flex-layout';
 import '@dreamworld/dw-select/dw-select';
 import '@dreamworld/dw-icon-button/dw-icon-button.js';
 import isEmpty from 'lodash-es/isEmpty';
+import isEqual from 'lodash-es/isEqual';
 import clone from 'lodash-es/clone';
 import filter from 'lodash-es/filter';
 import { styleMap } from 'lit-html/directives/style-map.js';
@@ -199,7 +200,13 @@ export class DwActionToolbar extends LitElement {
   }
 
   set actions(val) {
+    let oldValue = this._actions;
+    if(isEqual(oldValue, val)) {
+      return;
+    }
+
     this._actions = val;
+    this.requestUpdate('actions', oldValue);
     this._computeItems();
   }
 
@@ -208,7 +215,13 @@ export class DwActionToolbar extends LitElement {
   }
 
   set hiddenActions(val) {
+    let oldValue = this._hiddenActions;
+    if(isEqual(oldValue, val)) {
+      return;
+    }
+
     this._hiddenActions = val;
+    this.requestUpdate('hiddenActions', oldValue);
     this._computeItems();
   }
 
@@ -217,7 +230,13 @@ export class DwActionToolbar extends LitElement {
   }
 
   set primaryActions(val) {
+    let oldValue = this.__primaryActions;
+    if(isEqual(oldValue, val)) {
+      return;
+    }
+
     this.__primaryActions = val;
+    this.requestUpdate('primaryActions', oldValue);
     this._computeItems();
   }
 
