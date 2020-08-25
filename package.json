@@ -17,10 +17,10 @@
   },
   "homepage": "https://github.com/DreamworldSolutions/dw-action-toolbar#readme",
   "dependencies": {
-    "@dreamworld/dw-icon": "^1.2.0",
     "@dreamworld/dw-icon-button": "^1.1.0",
     "@dreamworld/dw-select": "^1.6.0",
     "@dreamworld/flex-layout": "^1.0.0",
+    "@dreamworld/pwa-helpers": "^1.8.0",
     "lit-element": "^2.2.1",
     "lodash-es": "^4.17.15"
   },
@@ -43,6 +43,7 @@
     "@semantic-release/npm": "5.2.0-beta.5",
     "@dreamworld/dw-icon": "1.0.2",
     "@dreamworld/dw-icon-button": "1.1.2",
-    "@material/mwc-ripple": "0.7.1"
+    "@material/mwc-ripple": "0.7.1",
+    "@dreamworld/pwa-helpers": "1.9.0"
   }
 }

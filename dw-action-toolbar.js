@@ -1,8 +1,9 @@
-import { LitElement } from '@dw/pwa-helpers/lit-element';
+import { LitElement } from '@dreamworld/pwa-helpers/lit-element.js';
 import { html, css } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat.js';
 import * as layoutLiterals from '@dreamworld/flex-layout';
-import '@dreamworld/dw-select/dw-select'
+import '@dreamworld/dw-select/dw-select';
+import '@dreamworld/dw-icon-button/dw-icon-button.js';
 import isEmpty from 'lodash-es/isEmpty';
 import clone from 'lodash-es/clone';
 import filter from 'lodash-es/filter';
