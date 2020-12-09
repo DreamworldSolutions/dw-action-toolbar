@@ -345,8 +345,11 @@ export class DwActionToolbar extends LitElement {
    * Invoked on primary action click.
    * @param {Object} e Event
    */
-  _onPrimaryActionClick(e) {
-    this._triggerActionEvent({detail: {value: e.target.getAttribute('name')}})
+  async _onPrimaryActionClick(e) {
+    let target = e.target;
+    let action = target.getAttribute('name');
+    target.__waitForEntryAnimation && await target.__waitForEntryAnimation;
+    this._triggerActionEvent({detail: {value: action}});
   }
 
   /**
