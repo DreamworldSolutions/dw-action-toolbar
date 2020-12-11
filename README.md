@@ -16,7 +16,7 @@
 import '@dreamworld/dw-action-toolbar/action-toolbar';
 ```
 ## Events
-- Fires `action` event with action name.
+- Fire `action` event with action name and its trigger after once icon button ripple is completed.
 
 ## Features
 - Hide actions

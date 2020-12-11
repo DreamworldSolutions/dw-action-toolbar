@@ -343,10 +343,14 @@ export class DwActionToolbar extends LitElement {
 
   /**
    * Invoked on primary action click.
+   * Trigger action event after icon-button ripple is completed.
    * @param {Object} e Event
    */
-  _onPrimaryActionClick(e) {
-    this._triggerActionEvent({detail: {value: e.target.getAttribute('name')}})
+  async _onPrimaryActionClick(e) {
+    let target = e.target;
+    let action = target.getAttribute('name');
+    target.waitForEntryAnimation && await target.waitForEntryAnimation;
+    this._triggerActionEvent({detail: {value: action}});
   }
 
   /**
