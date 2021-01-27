@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/DreamworldSolutions/dw-action-toolbar#readme",
   "dependencies": {
-    "@dreamworld/dw-icon-button": "update-mwc",
-    "@dreamworld/dw-select": "update-mwc",
+    "@dreamworld/dw-icon-button": "^2.1.0",
+    "@dreamworld/dw-select": "^2.1.0",
     "@dreamworld/flex-layout": "^1.0.0",
     "@dreamworld/pwa-helpers": "^1.8.0",
     "lit-element": "^2.2.1",
