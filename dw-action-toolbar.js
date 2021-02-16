@@ -192,6 +192,12 @@ export class DwActionToolbar extends LitElement {
        * It can be of either String or Array type.
        */
       _value: { type: Array },
+
+      /**
+       * Input property. 
+       * When it's provided, renders this template into footer.
+       */
+      customFooterTemplate: { type: Object }
     };
   }
 
@@ -297,7 +303,8 @@ export class DwActionToolbar extends LitElement {
             .hOffset="${this.dialogHOffset}"
             .alwaysFullScreenInMobile="${this.alwaysFullScreenInMobile}"
             @value-changed="${this._triggerActionEvent}"
-            @opened-changed="${this._onSelectOpenedChanged}">
+            @opened-changed="${this._onSelectOpenedChanged}"
+            .customFooterTemplate=${this.customFooterTemplate}>
             <slot></slot>
           </dw-select>
         ` : ''
