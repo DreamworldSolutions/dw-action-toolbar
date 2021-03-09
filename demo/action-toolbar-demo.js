@@ -12,6 +12,7 @@ class ActionToolbarDemo extends LitElement {
           height: 36px;
           width: 36px;
           margin-left: 350px;
+          --dw-select-bg-color: #FFF;
         }
       `
     ];
@@ -25,7 +26,7 @@ class ActionToolbarDemo extends LitElement {
   constructor() {
     super();
     this.dialogTitle = 'Board actions';
-    this.actions = [{name: 'OPEN', title: 'Open'}, {name: 'ADD', title: 'Add'}, {name: 'EDIT', title: 'Edit'}, {name: 'DELETE', title: 'Delete'}, {name: 'DOWNLOAD', title: 'Download'}];
+    this.actions = [{name: 'OPEN', label: 'Open'}, {name: 'ADD', label: 'Add'}, {name: 'EDIT', label: 'Edit'}, {name: 'DELETE', label: 'Delete'}, {name: 'DOWNLOAD', label: 'Download'}];
     this.disabledActions = {'EDIT': 'User has no write permission'}
     this.hiddenActions = ['DELETE'];
     this.mobileMode = true;
@@ -38,7 +39,7 @@ class ActionToolbarDemo extends LitElement {
         .actions=${this.actions}
         .disabledActions=${this.disabledActions}
         .hiddenActions=${this.hiddenActions}
-        .mobileMode=${this.mobileMode}
+        .mobileMode=${false}
       >
       </dw-action-toolbar>
     `;

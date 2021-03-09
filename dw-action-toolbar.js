@@ -167,31 +167,37 @@ export class DwActionToolbar extends LitElement {
        * Possible values: "left", "right"
        * Default value: "left"
        */
-      dialogHAlign: String,
+      dialogHAlign: { type: String },
 
       /**
        * Input property. The orientation against which to align the menu dropdown vertically relative to the dropdown trigger.
        * Possible values: "top", "bottom"
        * Default value: "top"
        */
-      dialogVAlign: String,
+      dialogVAlign: { type: String },
 
       /**
        * Input property. The horizontal offset in pixels. Negtaive numbers allowed.
        * Default value: 0
        */
-      dialogHOffset: Number,
+      dialogHOffset: { type: Number },
 
       /**
        * Input property. The vertical offset in pixels. Negtaive numbers allowed.
        * Default value: 0
        */
-      dialogVOffset: Number,
+      dialogVOffset: { type: Number },
 
       /**
        * It can be of either String or Array type.
        */
       _value: { type: Array },
+
+      /**
+       * Input property. 
+       * When it's provided, renders this template into footer.
+       */
+      customFooterTemplate: { type: Object }
     };
   }
 
@@ -253,7 +259,7 @@ export class DwActionToolbar extends LitElement {
     this.closeIcon = 'close';
     this.closeIconPosition = 'right';
     this.dialogHAlign = 'left';
-    this.dialogVAlign = 'top';
+    this.dialogVAlign = 'bottom';
   }
 
   render() {
@@ -291,13 +297,14 @@ export class DwActionToolbar extends LitElement {
             .mobileMode="${this.mobileMode}"
             .noHeader="${this.noHeader}"
             .dialogTitle="${this.dialogTitle}"
-            .vAlign="${this.dialogVOffset}"
-            .hAlign="${this.dialogHOffset}"
+            .vAlign="${this.dialogVAlign}"
+            .hAlign="${this.dialogHAlign}"
             .vOffset="${this.dialogVOffset}"
             .hOffset="${this.dialogHOffset}"
             .alwaysFullScreenInMobile="${this.alwaysFullScreenInMobile}"
             @value-changed="${this._triggerActionEvent}"
-            @opened-changed="${this._onSelectOpenedChanged}">
+            @opened-changed="${this._onSelectOpenedChanged}"
+            .customFooterTemplate=${this.customFooterTemplate}>
             <slot></slot>
           </dw-select>
         ` : ''
