@@ -271,7 +271,7 @@ export class DwActionToolbar extends LitElement {
             style="${styleMap(this._setPrimaryActionIconColor(action))}"
             .iconSize="${this.primaryActionIconSize}" 
             .buttonSize="${this.primaryActionButtonSize}"
-            title="${action.tooltip ? action.tooltip : ''}"
+            .title="${action.tooltip ? action.tooltip : ''}"
             name="${action.name}"
             icon="${action.icon}" 
             @click=${this._onPrimaryActionClick}>
