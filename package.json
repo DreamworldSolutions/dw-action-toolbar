@@ -18,7 +18,7 @@
   "homepage": "https://github.com/DreamworldSolutions/dw-action-toolbar#readme",
   "dependencies": {
     "@dreamworld/dw-icon-button": "^2.1.0",
-    "@dreamworld/dw-select": "3.2.1-development.1",
+    "@dreamworld/dw-select": "^3.2.1",
     "@dreamworld/flex-layout": "^1.0.0",
     "@dreamworld/pwa-helpers": "^1.8.0",
     "lit-element": "^2.2.1",
