@@ -63,10 +63,10 @@
     "@material/mwc-icon" "0.20.0"
     lit-element "^2.2.0"
 
-"@dreamworld/dw-select@^3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-select/-/dw-select-3.3.0.tgz#f3829e269c6f6f884dcff51cad06045afc80e8e8"
-  integrity sha512-HNOLEiCi+kDk3h8yKNdDOAmyYtzW3JN84QMabf9ycsOF+9qdVkNYtqqoP4ouSoRTvBiJVJm47/+Af/ni+866og==
+"@dreamworld/dw-select@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-select/-/dw-select-3.3.1.tgz#9350999825ed82fe9eceb2eb96f9ef2983a28fd6"
+  integrity sha512-PYoFZZbltB+cz66ATJzdCcpX4CWbJ60oKCanbaFZ/YpayOkDY6GoIb60LyH005snjkn8veLVJ7IqSwzP1GZLnA==
   dependencies:
     "@dreamworld/dw-button" "^2.1.0"
     "@dreamworld/dw-form" "^2.1.0"
