@@ -30,18 +30,18 @@ export class DwActionToolbar extends LitElement {
       /**
        * Input property.
        * Represent total available actions / sub actions in the toolbar.
-       * e.g. 
+       * e.g.
        * ```
-       * [{name: 'ADD', label: 'Add', icon: 'content.add'}, {name: 'ADD', label: 'Add', icon: 'content.add', type: "collapsible", subActions: [{name: 'TOP', label: 'Move to top', icon: 'arrow_up'}]}, 
+       * [{name: 'ADD', label: 'Add', icon: 'content.add'}, {name: 'ADD', label: 'Add', icon: 'content.add', type: "collapsible", subActions: [{name: 'TOP', label: 'Move to top', icon: 'arrow_up'}]},
        *    {name: 'EDIT', label: 'Edit', icon: 'editor.edit', tooltip: 'Edit your Record'}]
        * ``
-       * 
+       *
        * Where, `tooltip` is optional. If specified, title tooltip is shown for for this action.
        * Actions specified here can be further customized through other configuration properties like `primaryActions`,
        * `disabledActions`, `hiddenActions` etc.
        */
       actions: {type: Array},
-      
+
 
       /**
        * Input property.
@@ -64,7 +64,7 @@ export class DwActionToolbar extends LitElement {
 
       /**
        * Input property.
-       * Specifies actiosn which are disabled. 
+       * Specifies actiosn which are disabled.
        * e.g. {'DELETE': 'User has no write permission'}
        * key = action name, value = Tooltip message to be shown for that action.
        * Note:: These actions must be declared in the `actions` property.
@@ -161,7 +161,7 @@ export class DwActionToolbar extends LitElement {
        * Provide your custom trigger element as a slot.
        */
       customTrigger: { type: Boolean, reflect: true, attribute: 'custom-trigger' },
-      
+
       /**
        * Input property. The orientation against which to align the menu dropdown horizontally relative to the dropdown trigger.
        * Possible values: "left", "right"
@@ -194,7 +194,7 @@ export class DwActionToolbar extends LitElement {
       _value: { type: Array },
 
       /**
-       * Input property. 
+       * Input property.
        * When it's provided, renders this template into footer.
        */
       customFooterTemplate: { type: Object }
@@ -266,20 +266,20 @@ export class DwActionToolbar extends LitElement {
     return html`
       ${this._primaryActions && this._primaryActions.length ? html`
           ${repeat(this._primaryActions, (action) => action.name, (action, index) => html`
-          <dw-icon-button 
+          <dw-icon-button
             class="primary-action-btn"
             style="${styleMap(this._setPrimaryActionIconColor(action))}"
-            .iconSize="${this.primaryActionIconSize}" 
+            .iconSize="${this.primaryActionIconSize}"
             .buttonSize="${this.primaryActionButtonSize}"
             .title="${action.tooltip ? action.tooltip : ''}"
             name="${action.name}"
-            icon="${action.icon}" 
+            icon="${action.icon}"
             @click=${this._onPrimaryActionClick}>
           </dw-icon-button>
           `)}
         ` : ''}
         ${this._secondaryActions && this._secondaryActions.length ? html`
-          <dw-select 
+          <dw-select
             ?custom-trigger="${this.customTrigger}"
             .opened="${this.opened}"
             .singleSelect="${true}"
@@ -292,6 +292,7 @@ export class DwActionToolbar extends LitElement {
             .items="${this._secondaryActions}"
             .disabledItems="${this.disabledActions}"
             .value="${this._value}"
+            .listItemIconSize=${this.listItemIconSize}
             .itemLabel="${"label"}"
             .itemValue="${"name"}"
             .mobileMode="${this.mobileMode}"
@@ -314,7 +315,7 @@ export class DwActionToolbar extends LitElement {
 
   /**
    * Sets icon color of primary action.
-   * @param {Object} item Action 
+   * @param {Object} item Action
    */
   _setPrimaryActionIconColor(item) {
     if (item.iconColor) {
@@ -419,7 +420,7 @@ export class DwActionToolbar extends LitElement {
         }
         result.push(action);
       }
-        
+
     });
     return result;
   }
