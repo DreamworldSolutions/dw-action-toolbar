@@ -1,11 +1,8 @@
-import { LitElement, html, css } from 'lit-element';
-import { flexLayout, alignment } from '@dreamworld/flex-layout';
+import { LitElement, html, css } from '@dreamworld/pwa-helpers/lit.js';
 import '../dw-action-toolbar';
 class ActionToolbarDemo extends LitElement {
   static get styles() {
     return [
-      flexLayout,
-      alignment,
       css`
         :host {
           display: block;

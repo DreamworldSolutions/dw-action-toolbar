@@ -19,9 +19,7 @@
   "dependencies": {
     "@dreamworld/dw-icon-button": "^2.1.0",
     "@dreamworld/dw-select": "^3.3.1",
-    "@dreamworld/flex-layout": "^1.0.0",
-    "@dreamworld/pwa-helpers": "^1.8.0",
-    "lit-element": "^2.2.1",
+    "@dreamworld/pwa-helpers": "^1.13.1",
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
