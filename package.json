@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/DreamworldSolutions/dw-action-toolbar#readme",
   "dependencies": {
-    "@dreamworld/dw-icon-button": "https://github.com/DreamworldSolutions/dw-icon-button.git#feature/upgrade-lit",
-    "@dreamworld/dw-select": "https://github.com/DreamworldSolutions/dw-select.git#feature/upgrade-to-lit",
+    "@dreamworld/dw-icon-button": "^3.0.0",
+    "@dreamworld/dw-select": "v3.6.0-upgrade-to-lit.1",
     "@dreamworld/pwa-helpers": "^1.13.1",
     "lodash-es": "^4.17.15"
   },
