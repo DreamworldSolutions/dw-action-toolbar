@@ -285,7 +285,7 @@ export class DwActionToolbar extends LitElement {
         id="triggerElement"
         .icon="${this.triggerIcon}"
         .iconSize="${this.primaryActionIconSize}"
-        @click=${this._onMenuOpen}
+        @click=${this._onTriggerButtonClick}
       ></dw-icon-button>
       ${this._renderMenu}
     `;
@@ -326,27 +326,6 @@ export class DwActionToolbar extends LitElement {
       }
     }
     return {};
-  }
-
-  /**
-   * Invoked on select-dialog opened change.
-   * @param {Object} e Event detail
-   */
-  _onSelectOpenedChanged(e) {
-    this.opened = e.detail.opened;
-    this._openedChanged();
-  }
-
-  /**
-   * Event listener. Invoked when drop-down is opened/closed.
-   * Current value of drop-down can be retrieved from the property `opened`.
-   * It clears selected item on dialog closed.
-   * It's a protected method, so can be used by the child-class to do any custom work on it.
-   */
-  _openedChanged() {
-    if (!this.opened) {
-      this._value = [];
-    }
   }
 
   /**
@@ -427,7 +406,7 @@ export class DwActionToolbar extends LitElement {
   /**
    * Open Menu
    */
-  _onMenuOpen() {
+  _onTriggerButtonClick() {
     this.opened = true;
   }
 
