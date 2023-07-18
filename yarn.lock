@@ -30,10 +30,10 @@
   dependencies:
     regenerator-runtime "^0.13.11"
 
-"@dreamworld/dw-dialog@^5.0.0":
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-dialog/-/dw-dialog-5.6.0.tgz#f1274e04abf80e2ec0e21510ab5fe9d3249b2a94"
-  integrity sha512-mbS4WwTbMw7acuweEPOt3cDmajC5dod6DSwWQCT9SGs6p38QqeoTVbK0XsQcjCWbGoZ6VFjTRlcIqLtScyUncA==
+"@dreamworld/dw-dialog@^5.6.0":
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-dialog/-/dw-dialog-5.6.1.tgz#15c6e4855357c0fb7aa9c2655d0456c0afefd1a4"
+  integrity sha512-vYFb+P+7kNt/2OD6Ee0oI4xV9KbIWco183F+oYfqlDnu28w7saeG4yDwylCFjQYoA5moUgIfKzGfDfL8VrIvrw==
   dependencies:
     "@dreamworld/material-styles" "^3.1.0"
     "@dreamworld/pwa-helpers" "^1.14.0"
@@ -50,7 +50,7 @@
     "@dreamworld/pwa-helpers" "^1.13.1"
     bowser "^2.11.0"
 
-"@dreamworld/dw-icon-button@^3.0.0", "@dreamworld/dw-icon-button@^3.2.1":
+"@dreamworld/dw-icon-button@^3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@dreamworld/dw-icon-button/-/dw-icon-button-3.2.1.tgz#936d0152a8e0d2f266418ecb16144c29e29e7829"
   integrity sha512-6QJ+kG8YEf99bYT3a+ye5jmtmEb+FkXnTe34m6thc/XRWgKymNxucb2fsN1Xn7WwNpBGxin/f+oqbgRJQ3vqDA==
@@ -69,7 +69,7 @@
     "@dreamworld/pwa-helpers" "^1.13.1"
     "@material/mwc-icon" "0.27.0"
 
-"@dreamworld/dw-list-item@^4.1.0":
+"@dreamworld/dw-list-item@^4.3.1":
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/@dreamworld/dw-list-item/-/dw-list-item-4.3.1.tgz#680fa59ffa933dc38dc8372f8e8d1ae390166f28"
   integrity sha512-BGVgAb3Apum42Oix/8zlj2Lw5OduqGjPDnzE/e03qyTJJxwCfAcFzbFX1/jnpt/9kHpMhI2C59KhtjidUNQKQg==
@@ -80,17 +80,17 @@
     "@dreamworld/material-styles" "^3.0.0"
     "@dreamworld/pwa-helpers" "^1.13.1"
 
-"@dreamworld/dw-menu@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-menu/-/dw-menu-2.3.1.tgz#482e9449102adc26ec50f463b066a8a0ef046ecc"
-  integrity sha512-p6dWohrCOePU427BYfdecW1AA8OPMc4qN2RnJpH9weqIK2NVcTrH1+HtV27BiplJjgwG97MY6VGJALZCFtco1w==
+"@dreamworld/dw-menu@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-menu/-/dw-menu-2.4.1.tgz#a6fe505e7869aea5588df8f0b46f2c2e0b01934f"
+  integrity sha512-pZDw8k8bu7b8ZqPRO/wsDnhdTkD2JrBcB8Xqs9RS3h1zrQ4KPLRIYCgeXOVYvcfl1BKGB/mkxXIx3BjBJu2YrQ==
   dependencies:
-    "@dreamworld/dw-dialog" "^5.0.0"
-    "@dreamworld/dw-icon-button" "^3.0.0"
-    "@dreamworld/dw-list-item" "^4.1.0"
+    "@dreamworld/dw-dialog" "^5.6.0"
+    "@dreamworld/dw-icon-button" "^3.2.1"
+    "@dreamworld/dw-list-item" "^4.3.1"
     "@dreamworld/dw-tooltip" "^3.1.1"
-    "@dreamworld/material-styles" "^3.1.0"
-    "@dreamworld/pwa-helpers" "^1.14.0"
+    "@dreamworld/material-styles" "^3.2.2"
+    "@dreamworld/pwa-helpers" "^1.16.5"
 
 "@dreamworld/dw-ripple@^3.1.0":
   version "3.1.2"
@@ -145,6 +145,18 @@
     lodash-es "^4.17.21"
     pwa-helpers "^0.9.1"
 
+"@dreamworld/pwa-helpers@^1.17.2":
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/@dreamworld/pwa-helpers/-/pwa-helpers-1.17.2.tgz#2fc0f4ea452ced8af724075a9a915c5b35dd9262"
+  integrity sha512-LFK94FcvtldQvxQ7HKH85RzBXxDf/4bNkWpRvlgp1KRlJZjuHJWdRKid8CsjwRMhf/e8n8EiOzMrCI/hlxMo8Q==
+  dependencies:
+    bowser "^2.8.1"
+    i18next "^22.4.9"
+    lit "^2.7.2"
+    lit-element "^3.2.2"
+    lodash-es "^4.17.21"
+    pwa-helpers "^0.9.1"
+
 "@dreamworld/web-util@^1.2.0":
   version "1.4.4"
   resolved "https://registry.yarnpkg.com/@dreamworld/web-util/-/web-util-1.4.4.tgz#1125fb8cc8a7aa12e6b0422996df504c8b5df554"
@@ -159,10 +171,22 @@
     update-notifier "^2.2.0"
     yargs "^8.0.2"
 
+"@lit-labs/ssr-dom-shim@^1.0.0", "@lit-labs/ssr-dom-shim@^1.1.0":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@lit-labs/ssr-dom-shim/-/ssr-dom-shim-1.1.1.tgz#64df34e2f12e68e78ac57e571d25ec07fa460ca9"
+  integrity sha512-kXOeFbfCm4fFf2A3WwVEeQj55tMZa8c8/f9AKHMobQMkzNUfUj+antR3fRPaZJawsa1aZiP/Da3ndpZrwEe4rQ==
+
 "@lit/reactive-element@^1.3.0", "@lit/reactive-element@^1.4.0":
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/@lit/reactive-element/-/reactive-element-1.4.1.tgz#3f587eec5708692135bc9e94cf396130604979f3"
   integrity sha512-qDv4851VFSaBWzpS02cXHclo40jsbAjRXnebNXpm0uVg32kCneZPo9RYVQtrTNICtZ+1wAYHu1ZtxWSWMbKrBw==
+
+"@lit/reactive-element@^1.6.0":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@lit/reactive-element/-/reactive-element-1.6.2.tgz#c256690f82f2d7d0ffb0b1cdf68dcb1ec86cea28"
+  integrity sha512-rDfl+QnCYjuIGf5xI2sVJWdYIi56CTCwWa+nidKYX6oIuBYwUbT/vX4qbUDlHiZKJ/3FRNQ/tWJui44p6/stSA==
+  dependencies:
+    "@lit-labs/ssr-dom-shim" "^1.0.0"
 
 "@material/animation@14.0.0-canary.53b3cad2f.0":
   version "14.0.0-canary.53b3cad2f.0"
@@ -3391,10 +3415,26 @@ lit-element@^3.2.0, lit-element@^3.2.2:
     "@lit/reactive-element" "^1.3.0"
     lit-html "^2.2.0"
 
+lit-element@^3.3.0:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/lit-element/-/lit-element-3.3.2.tgz#9913bf220b85065f0e5f1bb8878cc44f36b50cfa"
+  integrity sha512-xXAeVWKGr4/njq0rGC9dethMnYCq5hpKYrgQZYTzawt9YQhMiXfD+T1RgrdY3NamOxwq2aXlb0vOI6e29CKgVQ==
+  dependencies:
+    "@lit-labs/ssr-dom-shim" "^1.1.0"
+    "@lit/reactive-element" "^1.3.0"
+    lit-html "^2.7.0"
+
 lit-html@^2.2.0, lit-html@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-2.4.0.tgz#b510430f39a56ec959167ed1187241a4e3ab1574"
   integrity sha512-G6qXu4JNUpY6aaF2VMfaszhO9hlWw0hOTRFDmuMheg/nDYGB+2RztUSOyrzALAbr8Nh0Y7qjhYkReh3rPnplVg==
+  dependencies:
+    "@types/trusted-types" "^2.0.2"
+
+lit-html@^2.7.0:
+  version "2.7.5"
+  resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-2.7.5.tgz#0c1b9d381abe20c01475ae53ea4b07bf4c923eb8"
+  integrity sha512-YqUzpisJodwKIlbMFCtyrp58oLloKGnnPLMJ1t23cbfIJjg/H9pvLWK4XS69YeubK5HUs1UE4ys9w5dP1zg6IA==
   dependencies:
     "@types/trusted-types" "^2.0.2"
 
@@ -3406,6 +3446,15 @@ lit@^2.0.0, lit@^2.3.1:
     "@lit/reactive-element" "^1.4.0"
     lit-element "^3.2.0"
     lit-html "^2.4.0"
+
+lit@^2.7.2:
+  version "2.7.6"
+  resolved "https://registry.yarnpkg.com/lit/-/lit-2.7.6.tgz#810007b876ed43e0c70124de91831921598b1665"
+  integrity sha512-1amFHA7t4VaaDe+vdQejSVBklwtH9svGoG6/dZi9JhxtJBBlqY5D1RV7iLUYY0trCqQc4NfhYYZilZiVHt7Hxg==
+  dependencies:
+    "@lit/reactive-element" "^1.6.0"
+    lit-element "^3.3.0"
+    lit-html "^2.7.0"
 
 load-json-file@^2.0.0:
   version "2.0.0"
