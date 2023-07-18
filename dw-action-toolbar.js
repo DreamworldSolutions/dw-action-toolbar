@@ -1,24 +1,25 @@
-import { LitElement, html, css } from '@dreamworld/pwa-helpers/lit.js';
-import { repeat } from 'lit/directives/repeat.js';
-import '@dreamworld/dw-select/dw-select';
-import '@dreamworld/dw-icon-button/dw-icon-button.js';
-import isEmpty from 'lodash-es/isEmpty';
-import isEqual from 'lodash-es/isEqual';
-import clone from 'lodash-es/clone';
-import filter from 'lodash-es/filter';
-import { styleMap } from 'lit/directives/style-map.js';
+import "@dreamworld/dw-icon-button/dw-icon-button.js";
+import "@dreamworld/dw-menu";
+import { css, html, LitElement, nothing } from "@dreamworld/pwa-helpers/lit.js";
+import { repeat } from "lit/directives/repeat.js";
+import { styleMap } from "lit/directives/style-map.js";
+import clone from "lodash-es/clone";
+import filter from "lodash-es/filter";
+import isEmpty from "lodash-es/isEmpty";
+import isEqual from "lodash-es/isEqual";
 export class DwActionToolbar extends LitElement {
   static get styles() {
     return css`
       :host {
         display: flex;
         flex-direction: row;
-        align-items: center;      }
+        align-items: center;
+      }
 
-      .primary-action-btn{
+      .primary-action-btn {
         margin: 0px 8px;
       }
-      `
+    `;
   }
 
   static get properties() {
@@ -36,8 +37,7 @@ export class DwActionToolbar extends LitElement {
        * Actions specified here can be further customized through other configuration properties like `primaryActions`,
        * `disabledActions`, `hiddenActions` etc.
        */
-      actions: {type: Array},
-
+      actions: { type: Array },
 
       /**
        * Input property.
@@ -46,7 +46,7 @@ export class DwActionToolbar extends LitElement {
        * Default value: `[]`.
        * Note:: These actions must be declared in the `actions` property, otherwise it will be simply ignored.
        */
-      primaryActions: {type: Array},
+      primaryActions: { type: Array },
 
       /**
        * Computed primary actions.
@@ -131,13 +131,13 @@ export class DwActionToolbar extends LitElement {
        * Input property. Display multiselect in mobile mode (full screen) and no keyboard support
        * Default value: false
        */
-      mobileMode: { type: Boolean, reflect: true, attribute: 'mobile-mode' },
+      mobileMode: { type: Boolean, reflect: true, attribute: "mobile-mode" },
 
       /**
        * Input property. When true, header will be hidden. header contains Back button, Dialog title, Selecte Items count.
        * Default value: false
        */
-      noHeader: { type: Boolean, reflect: true, attribute: 'no-header' },
+      noHeader: { type: Boolean, reflect: true, attribute: "no-header" },
 
       /**
        * Input property. The title for dialog
@@ -156,7 +156,7 @@ export class DwActionToolbar extends LitElement {
        * When `true`, Remove defualt trigger element
        * Provide your custom trigger element as a slot.
        */
-      customTrigger: { type: Boolean, reflect: true, attribute: 'custom-trigger' },
+      customTrigger: { type: Boolean, reflect: true, attribute: "custom-trigger" },
 
       /**
        * Input property. The orientation against which to align the menu dropdown horizontally relative to the dropdown trigger.
@@ -193,7 +193,7 @@ export class DwActionToolbar extends LitElement {
        * Input property.
        * When it's provided, renders this template into footer.
        */
-      customFooterTemplate: { type: Object }
+      customFooterTemplate: { type: Object },
     };
   }
 
@@ -203,12 +203,12 @@ export class DwActionToolbar extends LitElement {
 
   set actions(val) {
     let oldValue = this._actions;
-    if(isEqual(oldValue, val)) {
+    if (isEqual(oldValue, val)) {
       return;
     }
 
     this._actions = val;
-    this.requestUpdate('actions', oldValue);
+    this.requestUpdate("actions", oldValue);
     this._computeItems();
   }
 
@@ -218,12 +218,12 @@ export class DwActionToolbar extends LitElement {
 
   set hiddenActions(val) {
     let oldValue = this._hiddenActions;
-    if(isEqual(oldValue, val)) {
+    if (isEqual(oldValue, val)) {
       return;
     }
 
     this._hiddenActions = val;
-    this.requestUpdate('hiddenActions', oldValue);
+    this.requestUpdate("hiddenActions", oldValue);
     this._computeItems();
   }
 
@@ -233,80 +233,84 @@ export class DwActionToolbar extends LitElement {
 
   set primaryActions(val) {
     let oldValue = this.__primaryActions;
-    if(isEqual(oldValue, val)) {
+    if (isEqual(oldValue, val)) {
       return;
     }
 
     this.__primaryActions = val;
-    this.requestUpdate('primaryActions', oldValue);
+    this.requestUpdate("primaryActions", oldValue);
     this._computeItems();
   }
 
   constructor() {
     super();
     this.singleSelect = true;
-    this.triggerIcon = 'more_vert';
+    this.triggerIcon = "more_vert";
     this.primaryActions = [];
     this._primaryActions = [];
     this._secondaryActions = [];
     this.primaryActionButtonSize = 48;
     this.primaryActionIconSize = 24;
     this.listItemIconSize = 24;
-    this.closeIcon = 'close';
-    this.closeIconPosition = 'right';
-    this.dialogHAlign = 'left';
-    this.dialogVAlign = 'bottom';
+    this.closeIcon = "close";
+    this.closeIconPosition = "right";
+    this.dialogHAlign = "left";
+    this.dialogVAlign = "bottom";
   }
 
   render() {
     return html`
-      ${this._primaryActions && this._primaryActions.length ? html`
-          ${repeat(this._primaryActions, (action) => action.name, (action, index) => html`
-          <dw-icon-button
-            class="primary-action-btn"
-            style="${styleMap(this._setPrimaryActionIconColor(action))}"
-            .iconSize="${this.primaryActionIconSize}"
-            .buttonSize="${this.primaryActionButtonSize}"
-            .title="${action.tooltip ? action.tooltip : ''}"
-            name="${action.name}"
-            icon="${action.icon}"
-            @click=${this._onPrimaryActionClick}>
-          </dw-icon-button>
-          `)}
-        ` : ''}
-        ${this._secondaryActions && this._secondaryActions.length ? html`
-          <dw-select
-            ?custom-trigger="${this.customTrigger}"
-            .opened="${this.opened}"
-            .singleSelect="${true}"
-            .triggerIcon="${this.triggerIcon}"
-            .triggerButtonSize="${this.primaryActionButtonSize}"
-            .triggerIconSize="${this.primaryActionIconSize}"
-            .backIcon="${this.closeIcon}"
-            .backIconPosition="${this.closeIconPosition}"
-            .noCloseIcon="${this.noCloseIcon}"
-            .items="${this._secondaryActions}"
-            .disabledItems="${this.disabledActions}"
-            .value="${this._value}"
-            .listItemIconSize=${this.listItemIconSize}
-            .itemLabel="${"label"}"
-            .itemValue="${"name"}"
-            .mobileMode="${this.mobileMode}"
-            .noHeader="${this.noHeader}"
-            .dialogTitle="${this.dialogTitle}"
-            .vAlign="${this.dialogVAlign}"
-            .hAlign="${this.dialogHAlign}"
-            .vOffset="${this.dialogVOffset}"
-            .hOffset="${this.dialogHOffset}"
-            .alwaysFullScreenInMobile="${this.alwaysFullScreenInMobile}"
-            @value-changed="${this._triggerActionEvent}"
-            @opened-changed="${this._onSelectOpenedChanged}"
-            .customFooterTemplate=${this.customFooterTemplate}>
-            <slot></slot>
-          </dw-select>
-        ` : ''
-      }
-    `
+      ${this._primaryActions && this._primaryActions.length
+        ? html`
+            ${repeat(
+              this._primaryActions,
+              (action) => action.name,
+              (action, index) => html`
+                <dw-icon-button
+                  class="primary-action-btn"
+                  style="${styleMap(this._setPrimaryActionIconColor(action))}"
+                  .iconSize="${this.primaryActionIconSize}"
+                  .buttonSize="${this.primaryActionButtonSize}"
+                  .title="${action.tooltip ? action.tooltip : ""}"
+                  name="${action.name}"
+                  icon="${action.icon}"
+                  @click=${this._onPrimaryActionClick}
+                >
+                </dw-icon-button>
+              `
+            )}
+          `
+        : ""}
+      <dw-icon-button
+        id="triggerElement"
+        .icon="${this.triggerIcon}"
+        .iconSize="${this.primaryActionIconSize}"
+        @click=${this._onTriggerButtonClick}
+      ></dw-icon-button>
+      ${this._renderMenu}
+    `;
+  }
+
+  get _renderMenu() {
+    if (!(this._secondaryActions && this._secondaryActions.length && this.opened)) {
+      return nothing;
+    }
+
+    return html`<dw-menu
+      .opened=${this.opened}
+      .triggerElement=${this._getTriggerElement}
+      .actions=${this._secondaryActions}
+      .disabledActions=${this.disabledActions}
+      .mobileMode=${this.mobileMode}
+      .heading=${this.dialogTitle}
+      .showClose=${!this.noCloseIcon}
+      @dw-dialog-closed=${this._onMenuClose}
+      @action=${this._triggerActionEvent}
+    ></dw-menu>`;
+  }
+
+  get _getTriggerElement() {
+    return this.renderRoot.querySelector("#triggerElement");
   }
 
   /**
@@ -315,34 +319,13 @@ export class DwActionToolbar extends LitElement {
    */
   _setPrimaryActionIconColor(item) {
     if (item.iconColor) {
-      if (item.iconColor.startsWith('-')) {
-        return { '--dw-icon-color': `var(${item.iconColor})` };
+      if (item.iconColor.startsWith("-")) {
+        return { "--dw-icon-color": `var(${item.iconColor})` };
       } else {
-        return { '--dw-icon-color': `${item.iconColor}` };
+        return { "--dw-icon-color": `${item.iconColor}` };
       }
     }
     return {};
-  }
-
-  /**
-   * Invoked on select-dialog opened change.
-   * @param {Object} e Event detail
-   */
-  _onSelectOpenedChanged(e) {
-    this.opened = e.detail.opened;
-    this._openedChanged();
-  }
-
-  /**
-   * Event listener. Invoked when drop-down is opened/closed.
-   * Current value of drop-down can be retrieved from the property `opened`.
-   * It clears selected item on dialog closed.
-   * It's a protected method, so can be used by the child-class to do any custom work on it.
-   */
-  _openedChanged() {
-    if(!this.opened) {
-      this._value = [];
-    }
   }
 
   /**
@@ -352,9 +335,9 @@ export class DwActionToolbar extends LitElement {
    */
   async _onPrimaryActionClick(e) {
     let target = e.target;
-    let action = target.getAttribute('name');
-    target.waitForEntryAnimation && await target.waitForEntryAnimation;
-    this._triggerActionEvent({detail: {value: action}});
+    let action = target.getAttribute("name");
+    target.waitForEntryAnimation && (await target.waitForEntryAnimation);
+    this._triggerActionEvent({ detail: action });
   }
 
   /**
@@ -363,10 +346,10 @@ export class DwActionToolbar extends LitElement {
    * @protected
    */
   _triggerActionEvent(e) {
-    let actionEvent = new CustomEvent('action', {
+    let actionEvent = new CustomEvent("action", {
       detail: {
-        name: e.detail && e.detail.value
-      }
+        name: e.detail,
+      },
     });
     this.dispatchEvent(actionEvent);
   }
@@ -376,7 +359,7 @@ export class DwActionToolbar extends LitElement {
    * @protected
    */
   _computeItems() {
-    if(isEmpty(this.actions)) {
+    if (isEmpty(this.actions)) {
       this.items = [];
       return;
     }
@@ -384,10 +367,10 @@ export class DwActionToolbar extends LitElement {
     let aActions = clone(this.actions);
     const allVisibleActions = this._removeHiddenActions(aActions);
     this._primaryActions = filter(allVisibleActions, (o) => {
-      return this.primaryActions.includes(o.name)
+      return this.primaryActions.includes(o.name);
     });
     this._secondaryActions = filter(allVisibleActions, (o) => {
-      return !this.primaryActions.includes(o.name)
+      return !this.primaryActions.includes(o.name);
     });
   }
 
@@ -398,44 +381,41 @@ export class DwActionToolbar extends LitElement {
    */
   _removeHiddenActions(aActions) {
     let actions = [...aActions];
-    if(isEmpty(this.hiddenActions)) {
+    if (isEmpty(this.hiddenActions)) {
       return actions;
     }
 
     let result = [];
     actions.forEach((action) => {
-      if(this.hiddenActions.indexOf(action.name) === -1) {
-        if (action.type === 'expandable' && action.subActions && action.subActions.length) {
+      if (this.hiddenActions.indexOf(action.name) === -1) {
+        if (action.type === "expandable" && action.subActions && action.subActions.length) {
           const subActions = [];
           action.subActions.forEach((action) => {
             if (this.hiddenActions.indexOf(action.name) === -1) {
               subActions.push(action);
             }
           });
-          action= {...action, subActions};
+          action = { ...action, subActions };
         }
         result.push(action);
       }
-
     });
     return result;
   }
 
   /**
-   * Open action toolbar.
+   * Open Menu
    */
-  open() {
-    let elSelect = this.shadowRoot.querySelector('dw-select');
-    elSelect && elSelect.open();
+  _onTriggerButtonClick() {
+    this.opened = true;
   }
 
   /**
-   * Close action toolbar.
+   * Close Menu
    */
-  close() {
-    let elSelect = this.shadowRoot.querySelector('dw-select');
-    elSelect && elSelect.close();
+  _onMenuClose() {
+    this.opened = false;
   }
 }
 
-customElements.define('dw-action-toolbar', DwActionToolbar);
+customElements.define("dw-action-toolbar", DwActionToolbar);
