@@ -19,7 +19,7 @@
   "homepage": "https://github.com/DreamworldSolutions/dw-action-toolbar#readme",
   "dependencies": {
     "@dreamworld/dw-icon-button": "^3.2.1",
-    "@dreamworld/dw-menu": "^2.4.1",
+    "@dreamworld/dw-menu": "^2.5.2",
     "@dreamworld/pwa-helpers": "^1.17.2",
     "lodash-es": "^4.17.21"
   },
