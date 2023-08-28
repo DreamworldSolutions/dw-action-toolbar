@@ -30,10 +30,10 @@
   dependencies:
     regenerator-runtime "^0.13.11"
 
-"@dreamworld/dw-dialog@^5.6.0":
-  version "5.6.1"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-dialog/-/dw-dialog-5.6.1.tgz#15c6e4855357c0fb7aa9c2655d0456c0afefd1a4"
-  integrity sha512-vYFb+P+7kNt/2OD6Ee0oI4xV9KbIWco183F+oYfqlDnu28w7saeG4yDwylCFjQYoA5moUgIfKzGfDfL8VrIvrw==
+"@dreamworld/dw-dialog@^5.7.0":
+  version "5.7.1"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-dialog/-/dw-dialog-5.7.1.tgz#29b957060d249580f2e43dafd3bd800d3c498081"
+  integrity sha512-hdvGqe/jg+vINUCgLABqPRQLVkvO883+MjjWU9dX5GnstYOA1mpp/5o+pzFOh4UfxQjZenWIKLitcv3bNLnHRA==
   dependencies:
     "@dreamworld/material-styles" "^3.1.0"
     "@dreamworld/pwa-helpers" "^1.14.0"
@@ -80,12 +80,12 @@
     "@dreamworld/material-styles" "^3.0.0"
     "@dreamworld/pwa-helpers" "^1.13.1"
 
-"@dreamworld/dw-menu@^2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-menu/-/dw-menu-2.4.1.tgz#a6fe505e7869aea5588df8f0b46f2c2e0b01934f"
-  integrity sha512-pZDw8k8bu7b8ZqPRO/wsDnhdTkD2JrBcB8Xqs9RS3h1zrQ4KPLRIYCgeXOVYvcfl1BKGB/mkxXIx3BjBJu2YrQ==
+"@dreamworld/dw-menu@^2.5.2":
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-menu/-/dw-menu-2.5.2.tgz#12cee99c3f071588034551beb9e69dbd5ccff9af"
+  integrity sha512-rqh6u7tAqsWmiNLajI9jKMc7DhYJ1wbl4fWTndAaWJTRLuRO73BigUItaM4wMKbPu9lxHdbg3uxv2Af6CJh1LA==
   dependencies:
-    "@dreamworld/dw-dialog" "^5.6.0"
+    "@dreamworld/dw-dialog" "^5.7.0"
     "@dreamworld/dw-icon-button" "^3.2.1"
     "@dreamworld/dw-list-item" "^4.3.1"
     "@dreamworld/dw-tooltip" "^3.1.1"
