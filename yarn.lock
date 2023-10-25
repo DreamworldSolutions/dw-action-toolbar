@@ -80,10 +80,10 @@
     "@dreamworld/material-styles" "^3.0.0"
     "@dreamworld/pwa-helpers" "^1.13.1"
 
-"@dreamworld/dw-menu@^2.5.3":
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-menu/-/dw-menu-2.5.3.tgz#b5918c95a1468cf74b83f44762d45b2168cd9806"
-  integrity sha512-ORuMvN03TEzV0yMdWL+l+b07d2B3qAPRZ9ua3jnUkC6RA4nkJK+qTGzZT3KeWEK3pWqP1wqGH3klGwhioDovWw==
+"@dreamworld/dw-menu@^2.5.4":
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-menu/-/dw-menu-2.5.4.tgz#0497cfd6681aa611c61bcdec848335e3e2d859a9"
+  integrity sha512-Zxbik+2QLA7Ja7Vzul8erycwCjyibQz76n9EvXIKSYT/2e4/j+BSAc3O8VCqP2t/T9YbU5/4QQ/B7F/FW3ymDQ==
   dependencies:
     "@dreamworld/dw-dialog" "^5.7.0"
     "@dreamworld/dw-icon-button" "^3.2.1"

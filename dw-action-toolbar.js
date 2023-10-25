@@ -3,10 +3,8 @@ import "@dreamworld/dw-menu";
 import { css, html, LitElement, nothing } from "@dreamworld/pwa-helpers/lit.js";
 import { repeat } from "lit/directives/repeat.js";
 import { styleMap } from "lit/directives/style-map.js";
-import clone from "lodash-es/clone";
-import filter from "lodash-es/filter";
-import isEmpty from "lodash-es/isEmpty";
-import isEqual from "lodash-es/isEqual";
+import { cloneDeep, filter, isEmpty, isEqual } from "lodash-es";
+
 export class DwActionToolbar extends LitElement {
   static get styles() {
     return css`
@@ -14,10 +12,6 @@ export class DwActionToolbar extends LitElement {
         display: flex;
         flex-direction: row;
         align-items: center;
-      }
-
-      .primary-action-btn {
-        margin: 0px 8px;
       }
     `;
   }
@@ -57,6 +51,11 @@ export class DwActionToolbar extends LitElement {
        * Computed Secondary actions.
        */
       _secondaryActions: { type: Array },
+
+      /**
+       * Contains name of action which opened in menu
+       */
+      _menuOpenedFor: { type: String },
 
       /**
        * Input property.
@@ -256,6 +255,8 @@ export class DwActionToolbar extends LitElement {
     this.closeIconPosition = "right";
     this.dialogHAlign = "left";
     this.dialogVAlign = "bottom";
+    this.noCloseIcon = true;
+    this.showTrigger = true;
   }
 
   render() {
@@ -267,50 +268,68 @@ export class DwActionToolbar extends LitElement {
               (action) => action.name,
               (action, index) => html`
                 <dw-icon-button
-                  class="primary-action-btn"
+                  id="${action.name}"
                   style="${styleMap(this._setPrimaryActionIconColor(action))}"
                   .iconSize="${this.primaryActionIconSize}"
                   .buttonSize="${this.primaryActionButtonSize}"
                   .title="${action.tooltip ? action.tooltip : ""}"
+                  .iconFont=${action.iconFont}
                   name="${action.name}"
                   icon="${action.icon}"
-                  @click=${this._onPrimaryActionClick}
+                  ?disabled=${this.disabledActions && this.disabledActions[action.name]}
+                  .disabledTitle=${this.disabledActions && this.disabledActions[action.name]}
+                  @click=${(e) => this._onPrimaryActionClick(e, action)}
                 >
                 </dw-icon-button>
               `
             )}
           `
         : ""}
-      <dw-icon-button
-        id="triggerElement"
-        .icon="${this.triggerIcon}"
-        .iconSize="${this.primaryActionIconSize}"
-        @click=${this._onTriggerButtonClick}
-      ></dw-icon-button>
+      ${isEmpty(this._secondaryActions || this._secondaryActions.length)
+        ? ""
+        : html`<dw-icon-button
+            id="triggerElement"
+            .icon="${this.triggerIcon}"
+            .iconSize="${this.primaryActionIconSize}"
+            @click=${this._onTriggerButtonClick}
+          ></dw-icon-button>`}
       ${this._renderMenu}
     `;
   }
 
   get _renderMenu() {
-    if (!(this._secondaryActions && this._secondaryActions.length && this.opened)) {
+    if (!((this._secondaryActions?.length || this._primarySubActions?.length) && this.opened)) {
       return nothing;
     }
 
     return html`<dw-menu
       .opened=${this.opened}
       .triggerElement=${this._getTriggerElement}
-      .actions=${this._secondaryActions}
+      .placement=${"bottom-start"}
+      .actions=${this._getMenuActions}
       .disabledActions=${this.disabledActions}
-      .mobileMode=${this.mobileMode}
-      .heading=${this.dialogTitle}
+      .heading=${!this._menuOpenedFor ? this.dialogTitle : ""}
       .showClose=${!this.noCloseIcon}
+      .showTrigger=${this.showTrigger}
+      .appendTo=${document.body}
       @dw-dialog-closed=${this._onMenuClose}
       @action=${this._triggerActionEvent}
     ></dw-menu>`;
   }
 
   get _getTriggerElement() {
+    if (this._menuOpenedFor) {
+      return this.renderRoot.querySelector(`#${this._menuOpenedFor}`);
+    }
     return this.renderRoot.querySelector("#triggerElement");
+  }
+
+  get _getMenuActions() {
+    if (this._menuOpenedFor) {
+      const action = this._primaryActions.find((action) => action.name === this._menuOpenedFor);
+      return action?.subAction;
+    }
+    return this._secondaryActions;
   }
 
   /**
@@ -333,11 +352,16 @@ export class DwActionToolbar extends LitElement {
    * Trigger action event after icon-button ripple is completed.
    * @param {Object} e Event
    */
-  async _onPrimaryActionClick(e) {
+  async _onPrimaryActionClick(e, action) {
     let target = e.target;
-    let action = target.getAttribute("name");
     target.waitForEntryAnimation && (await target.waitForEntryAnimation);
-    this._triggerActionEvent({ detail: action });
+    console.log(action);
+    if (action?.subAction?.length) {
+      this._menuOpenedFor = action.name;
+      this.opened = true;
+      return;
+    }
+    this._triggerActionEvent({ detail: action.name });
   }
 
   /**
@@ -364,7 +388,7 @@ export class DwActionToolbar extends LitElement {
       return;
     }
 
-    let aActions = clone(this.actions);
+    let aActions = cloneDeep(this.actions);
     const allVisibleActions = this._removeHiddenActions(aActions);
     this._primaryActions = filter(allVisibleActions, (o) => {
       return this.primaryActions.includes(o.name);
@@ -415,6 +439,7 @@ export class DwActionToolbar extends LitElement {
    */
   _onMenuClose() {
     this.opened = false;
+    this._menuOpenedFor = undefined;
   }
 }
 

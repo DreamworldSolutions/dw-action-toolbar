@@ -48,7 +48,26 @@ class ActionToolbarDemo extends LitElement {
       { name: "OPEN", label: "Open", icon: "folder_open" },
       { name: "ADD", label: "Add", icon: "add" },
       { name: "EDIT", label: "Edit", icon: "edit" },
-      { name: "DOWNLOAD", label: "Download", icon: "download" },
+      {
+        name: "DOWNLOAD",
+        label: "Download",
+        icon: "download",
+        type: "expandable",
+        subAction: [
+          { name: "PDF", label: "PDF", icon: "picture_as_pdf" },
+          { name: "Excel", label: "Excel", icon: "description" },
+        ],
+      },
+      {
+        name: "SHARE",
+        label: "Share",
+        icon: "share",
+        type: "expandable",
+        subAction: [
+          { name: "SMS", label: "SMS", icon: "sms" },
+          { name: "EMAIL", label: "E Mail", icon: "mail" },
+        ],
+      },
       { name: "DELETE", label: "Delete", icon: "delete", danger: true },
     ];
     this.disabledActions = { EDIT: "User has no write permission" };
@@ -118,6 +137,7 @@ class ActionToolbarDemo extends LitElement {
         <div class="title">Footer</div>
         <dw-action-toolbar
           @action=${this._action}
+          .primaryActions="${["SHARE", "DOWNLOAD"]}"
           .dialogTitle=${this.dialogTitle}
           .actions=${this.actions}
           .disabledActions=${this.disabledActions}
