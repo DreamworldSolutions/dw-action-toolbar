@@ -53,7 +53,7 @@ export class DwActionToolbar extends LitElement {
       _secondaryActions: { type: Array },
 
       /**
-       * Contains name of action which opened in menu
+       * Contains the name of the action for which the menu is opened
        */
       _menuOpenedFor: { type: String },
 
@@ -124,7 +124,7 @@ export class DwActionToolbar extends LitElement {
       /**
        * Input + Output property. True if the dropdown is open, false otherwise.
        */
-      opened: { type: Boolean, reflect: true },
+      _opened: { type: Boolean, reflect: true },
 
       /**
        * Input property. Display multiselect in mobile mode (full screen) and no keyboard support
@@ -298,12 +298,12 @@ export class DwActionToolbar extends LitElement {
   }
 
   get _renderMenu() {
-    if (!((this._secondaryActions?.length || this._primarySubActions?.length) && this.opened)) {
+    if (!((this._secondaryActions?.length || this._menuOpenedFor) && this._opened)) {
       return nothing;
     }
 
     return html`<dw-menu
-      .opened=${this.opened}
+      .opened=${this._opened}
       .triggerElement=${this._getTriggerElement}
       .placement=${"bottom-start"}
       .actions=${this._getMenuActions}
@@ -355,10 +355,9 @@ export class DwActionToolbar extends LitElement {
   async _onPrimaryActionClick(e, action) {
     let target = e.target;
     target.waitForEntryAnimation && (await target.waitForEntryAnimation);
-    console.log(action);
     if (action?.subAction?.length) {
       this._menuOpenedFor = action.name;
-      this.opened = true;
+      this._opened = true;
       return;
     }
     this._triggerActionEvent({ detail: action.name });
@@ -431,14 +430,14 @@ export class DwActionToolbar extends LitElement {
    * Open Menu
    */
   _onTriggerButtonClick() {
-    this.opened = true;
+    this._opened = true;
   }
 
   /**
    * Close Menu
    */
   _onMenuClose() {
-    this.opened = false;
+    this._opened = false;
     this._menuOpenedFor = undefined;
   }
 }
