@@ -327,7 +327,7 @@ export class DwActionToolbar extends LitElement {
   get _getMenuActions() {
     if (this._menuOpenedFor) {
       const action = this._primaryActions.find((action) => action.name === this._menuOpenedFor);
-      return action?.subAction;
+      return action?.subActions;
     }
     return this._secondaryActions;
   }
@@ -355,7 +355,7 @@ export class DwActionToolbar extends LitElement {
   async _onPrimaryActionClick(e, action) {
     let target = e.target;
     target.waitForEntryAnimation && (await target.waitForEntryAnimation);
-    if (action?.subAction?.length) {
+    if (action?.subActions?.length) {
       this._menuOpenedFor = action.name;
       this._opened = true;
       return;
