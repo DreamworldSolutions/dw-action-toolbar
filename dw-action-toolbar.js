@@ -313,6 +313,7 @@ export class DwActionToolbar extends LitElement {
       .showClose=${!this.noCloseIcon}
       .showTrigger=${this.showTrigger}
       .appendTo=${document.body}
+      ?mobile-mode="${this.mobileMode}"
       @dw-dialog-closed=${this._onMenuClose}
       @action=${this._triggerActionEvent}
     ></dw-menu>`;
@@ -338,12 +339,11 @@ export class DwActionToolbar extends LitElement {
    * @param {Object} item Action
    */
   _setPrimaryActionIconColor(item) {
-    if (item.iconColor) {
-      if (item.iconColor.startsWith("-")) {
-        return { "--dw-icon-color": `var(${item.iconColor})` };
-      } else {
-        return { "--dw-icon-color": `${item.iconColor}` };
-      }
+    if (item.danger) {
+      return {
+        "--dw-icon-color": `var(--dw-menu-danger-action-color, var(--mdc-theme-error, #b00020))`,
+        "--dw-icon-color-active": `var(--dw-menu-danger-action-color, var(--mdc-theme-error, #b00020))`,
+      };
     }
     return {};
   }
