@@ -53,7 +53,7 @@ class ActionToolbarDemo extends LitElement {
         label: "Download",
         icon: "download",
         type: "expandable",
-        subAction: [
+        subActions: [
           { name: "PDF", label: "PDF", icon: "picture_as_pdf" },
           { name: "Excel", label: "Excel", icon: "description" },
         ],
@@ -63,7 +63,7 @@ class ActionToolbarDemo extends LitElement {
         label: "Share",
         icon: "share",
         type: "expandable",
-        subAction: [
+        subActions: [
           { name: "SMS", label: "SMS", icon: "sms" },
           { name: "EMAIL", label: "E Mail", icon: "mail" },
         ],
