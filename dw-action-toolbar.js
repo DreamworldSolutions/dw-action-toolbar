@@ -269,6 +269,7 @@ export class DwActionToolbar extends LitElement {
               (action, index) => html`
                 <dw-icon-button
                   id="${action.name}"
+                  class="primary-action-btn"
                   style="${styleMap(this._setPrimaryActionIconColor(action))}"
                   .iconSize="${this.primaryActionIconSize}"
                   .buttonSize="${this.primaryActionButtonSize}"
