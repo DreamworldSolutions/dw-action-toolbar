@@ -68,7 +68,7 @@ class ActionToolbarDemo extends LitElement {
           { name: "EMAIL", label: "E Mail", icon: "mail" },
         ],
       },
-      { name: "DELETE", label: "Delete", icon: "delete", danger: true, iconFont: 'OUTLINED' },
+      { name: "DELETE", label: "Delete", icon: "delete", danger: true },
     ];
     this.disabledActions = { EDIT: "User has no write permission" };
     this.hiddenActions = ["OPEN"];
@@ -137,7 +137,7 @@ class ActionToolbarDemo extends LitElement {
         <div class="title">Footer</div>
         <dw-action-toolbar
           @action=${this._action}
-          .primaryActions="${["SHARE", "DOWNLOAD", 'DELETE']}"
+          .primaryActions="${["SHARE", "DOWNLOAD"]}"
           .dialogTitle=${this.dialogTitle}
           .actions=${this.actions}
           .disabledActions=${this.disabledActions}
