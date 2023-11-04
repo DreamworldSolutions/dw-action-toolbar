@@ -313,6 +313,7 @@ export class DwActionToolbar extends LitElement {
       .showClose=${!this.noCloseIcon}
       .showTrigger=${this.showTrigger}
       .appendTo=${document.body}
+      ?mobile-mode="${this.mobileMode}"
       @dw-dialog-closed=${this._onMenuClose}
       @action=${this._triggerActionEvent}
     ></dw-menu>`;
