@@ -359,6 +359,7 @@ export class DwActionToolbar extends LitElement {
     target.waitForEntryAnimation && (await target.waitForEntryAnimation);
     if (action?.subActions?.length) {
       this._menuOpenedFor = action.name;
+      await this.updateComplete;
       this._opened = true;
       return;
     }
