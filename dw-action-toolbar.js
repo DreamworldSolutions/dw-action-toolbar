@@ -1,4 +1,5 @@
 import "@dreamworld/dw-icon-button/dw-icon-button.js";
+import "@dreamworld/device-info/device-info.js";
 import "@dreamworld/dw-menu";
 import { css, html, LitElement, nothing } from "@dreamworld/pwa-helpers/lit.js";
 import { repeat } from "lit/directives/repeat.js";
@@ -194,7 +195,7 @@ export class DwActionToolbar extends LitElement {
        */
       customFooterTemplate: { type: Object },
 
-      touchDevice: { type: Boolean },
+      _touchDevice: { type: Boolean },
     };
   }
 
@@ -259,6 +260,7 @@ export class DwActionToolbar extends LitElement {
     this.dialogVAlign = "bottom";
     this.noCloseIcon = true;
     this.showTrigger = true;
+    this._touchDevice = DeviceInfo.info().touch;
   }
 
   render() {
@@ -275,7 +277,7 @@ export class DwActionToolbar extends LitElement {
                   style="${styleMap(this._setPrimaryActionIconColor(action))}"
                   .iconSize="${this.primaryActionIconSize}"
                   .buttonSize="${this.primaryActionButtonSize}"
-                  .title="${!this.touchDevice && action.tooltip ? action.tooltip : ''}"
+                  .title="${!this._touchDevice && action.tooltip ? action.tooltip : ''}"
                   .iconFont=${action.iconFont}
                   name="${action.name}"
                   icon="${action.icon}"
