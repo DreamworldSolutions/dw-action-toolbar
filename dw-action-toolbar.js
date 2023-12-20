@@ -1,10 +1,10 @@
 import "@dreamworld/dw-icon-button/dw-icon-button.js";
-import "@dreamworld/device-info/device-info.js";
 import "@dreamworld/dw-menu";
 import { css, html, LitElement, nothing } from "@dreamworld/pwa-helpers/lit.js";
 import { repeat } from "lit/directives/repeat.js";
 import { styleMap } from "lit/directives/style-map.js";
 import { cloneDeep, filter, isEmpty, isEqual } from "lodash-es";
+import DeviceInfo from "@dreamworld/device-info/device-info.js";
 
 export class DwActionToolbar extends LitElement {
   static get styles() {
