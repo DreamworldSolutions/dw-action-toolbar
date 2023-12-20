@@ -193,6 +193,8 @@ export class DwActionToolbar extends LitElement {
        * When it's provided, renders this template into footer.
        */
       customFooterTemplate: { type: Object },
+
+      touchDevice: { type: Boolean },
     };
   }
 
@@ -273,7 +275,7 @@ export class DwActionToolbar extends LitElement {
                   style="${styleMap(this._setPrimaryActionIconColor(action))}"
                   .iconSize="${this.primaryActionIconSize}"
                   .buttonSize="${this.primaryActionButtonSize}"
-                  .title="${action.tooltip ? action.tooltip : ""}"
+                  .title="${!this.touchDevice && action.tooltip ? action.tooltip : ''}"
                   .iconFont=${action.iconFont}
                   name="${action.name}"
                   icon="${action.icon}"
