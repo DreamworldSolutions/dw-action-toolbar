@@ -4,6 +4,7 @@ import { css, html, LitElement, nothing } from "@dreamworld/pwa-helpers/lit.js";
 import { repeat } from "lit/directives/repeat.js";
 import { styleMap } from "lit/directives/style-map.js";
 import { cloneDeep, filter, isEmpty, isEqual } from "lodash-es";
+import DeviceInfo from "@dreamworld/device-info/device-info.js";
 
 export class DwActionToolbar extends LitElement {
   static get styles() {
@@ -193,6 +194,8 @@ export class DwActionToolbar extends LitElement {
        * When it's provided, renders this template into footer.
        */
       customFooterTemplate: { type: Object },
+
+      _touchDevice: { type: Boolean },
     };
   }
 
@@ -257,6 +260,7 @@ export class DwActionToolbar extends LitElement {
     this.dialogVAlign = "bottom";
     this.noCloseIcon = true;
     this.showTrigger = true;
+    this._touchDevice = DeviceInfo.info().touch;
   }
 
   render() {
@@ -273,7 +277,7 @@ export class DwActionToolbar extends LitElement {
                   style="${styleMap(this._setPrimaryActionIconColor(action))}"
                   .iconSize="${this.primaryActionIconSize}"
                   .buttonSize="${this.primaryActionButtonSize}"
-                  .title="${action.tooltip ? action.tooltip : ""}"
+                  .title="${!this._touchDevice && action.tooltip ? action.tooltip : ''}"
                   .iconFont=${action.iconFont}
                   name="${action.name}"
                   icon="${action.icon}"
