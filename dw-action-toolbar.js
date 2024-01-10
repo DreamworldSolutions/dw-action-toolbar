@@ -145,6 +145,11 @@ export class DwActionToolbar extends LitElement {
       dialogTitle: { type: String },
 
       /**
+       * Input property. The title for primary action's dialog.
+       */
+      subActionTitle: { type: String },
+
+      /**
        * Input property.
        * When true, Show dialog in full screen even if items are very less in mobile mode
        * Default value: `false`
@@ -310,7 +315,7 @@ export class DwActionToolbar extends LitElement {
     let subActionTitle;
 
     if(this._menuOpenedFor) {
-      subActionTitle = find(this.actions, (action) => action.name === this._menuOpenedFor)?.label
+      subActionTitle = this.subActionTitle || find(this.actions, (action) => action.name === this._menuOpenedFor)?.label
     }
 
     return html`<dw-menu
