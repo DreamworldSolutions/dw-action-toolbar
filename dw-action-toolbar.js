@@ -315,7 +315,7 @@ export class DwActionToolbar extends LitElement {
     let subActionTitle;
 
     if(this._menuOpenedFor) {
-      subActionTitle = this.subActionTitle || find(this.actions, (action) => action.name === this._menuOpenedFor)?.label
+      subActionTitle = find(this.actions, (action) => action.name === this._menuOpenedFor)?.subActionTitle || ``;
     }
 
     return html`<dw-menu
@@ -325,7 +325,7 @@ export class DwActionToolbar extends LitElement {
       .actions=${this._getMenuActions}
       .disabledActions=${this.disabledActions}
       .heading=${!this._menuOpenedFor ? this.dialogTitle : subActionTitle}
-      .showClose=${!this.noCloseIcon}
+      .showClose=${!this.noCloseIcon || subActionTitle}
       .showTrigger=${this.showTrigger}
       .appendTo=${document.body}
       ?mobile-mode="${this.mobileMode}"

@@ -53,6 +53,7 @@ class ActionToolbarDemo extends LitElement {
         label: "Download",
         icon: "download",
         type: "expandable",
+        subActionTitle: "Header",
         subActions: [
           { name: "PDF", label: "PDF", icon: "picture_as_pdf" },
           { name: "Excel", label: "Excel", icon: "description" },
