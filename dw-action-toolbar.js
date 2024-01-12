@@ -424,7 +424,7 @@ export class DwActionToolbar extends LitElement {
     let result = [];
     actions.forEach((action) => {
       if (this.hiddenActions.indexOf(action.name) === -1) {
-        if (action.type === "expandable" && action.subActions && action.subActions.length) {
+        if (action.subActions && action.subActions.length) {
           const subActions = [];
           action.subActions.forEach((action) => {
             if (this.hiddenActions.indexOf(action.name) === -1) {
