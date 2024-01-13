@@ -48,5 +48,13 @@ import '@dreamworld/dw-action-toolbar/action-toolbar';
   <action-toolbar .actions="${[{name: 'ADD', label: 'Add', icon: 'content.add'}, {name: 'EDIT', label: 'Edit', icon: 'editor.edit'}, {name: 'DELETE', label: 'Delete', icon: 'action.delete'}]}"></action-toolbar>
   ```
 
+  ### Example with primary action's subActions:
+  ```html
+  <dw-action-toolbar .actions="${[{name: 'ADD', label: 'Add', icon: 'content.add'}, {name: 'EDIT', label: 'Edit', icon: 'editor.edit'}, {name: 'DOWNLOAD', label: 'Download', icon: 'action.download', subActionTitle: 'Sub Actions', subActions: [{ name: 'PDF', label: 'PDF', icon: 'picture_as_pdf' }, { name: 'Excel', label: 'Excel', icon: 'description' }]}]}" .primaryActions='["DOWNLOAD"]'>
+  </dw-action-toolbar>
+  ```
+  #### Note:
+   - On mobile devices, the menu renders as a bottom-sheet dialog and on desktop, the menu renders as a popover dialog. Generally, subActionTitle is shown in the bottom sheet dialog only. So set subActionTitle as per your need.
+
 # Road map
 - Support `primaryActions` & `semiPrimaryActions`.

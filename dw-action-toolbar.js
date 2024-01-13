@@ -3,7 +3,7 @@ import "@dreamworld/dw-menu";
 import { css, html, LitElement, nothing } from "@dreamworld/pwa-helpers/lit.js";
 import { repeat } from "lit/directives/repeat.js";
 import { styleMap } from "lit/directives/style-map.js";
-import { cloneDeep, filter, isEmpty, isEqual } from "lodash-es";
+import { cloneDeep, filter, isEmpty, isEqual, find } from "lodash-es";
 import DeviceInfo from "@dreamworld/device-info/device-info.js";
 
 export class DwActionToolbar extends LitElement {
@@ -307,14 +307,20 @@ export class DwActionToolbar extends LitElement {
       return nothing;
     }
 
+    let subActionTitle;
+
+    if(this._menuOpenedFor) {
+      subActionTitle = find(this.actions, (action) => action.name === this._menuOpenedFor)?.subActionTitle || ``;
+    }
+
     return html`<dw-menu
       .opened=${this._opened}
       .triggerElement=${this._getTriggerElement}
       .placement=${"bottom-start"}
       .actions=${this._getMenuActions}
       .disabledActions=${this.disabledActions}
-      .heading=${!this._menuOpenedFor ? this.dialogTitle : ""}
-      .showClose=${!this.noCloseIcon}
+      .heading=${!this._menuOpenedFor ? this.dialogTitle : subActionTitle}
+      .showClose=${!this.noCloseIcon || subActionTitle}
       .showTrigger=${this.showTrigger}
       .appendTo=${document.body}
       ?mobile-mode="${this.mobileMode}"
@@ -418,7 +424,7 @@ export class DwActionToolbar extends LitElement {
     let result = [];
     actions.forEach((action) => {
       if (this.hiddenActions.indexOf(action.name) === -1) {
-        if (action.type === "expandable" && action.subActions && action.subActions.length) {
+        if (action.subActions && action.subActions.length) {
           const subActions = [];
           action.subActions.forEach((action) => {
             if (this.hiddenActions.indexOf(action.name) === -1) {
