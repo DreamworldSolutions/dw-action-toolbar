@@ -89,10 +89,10 @@
     "@dreamworld/material-styles" "^3.0.0"
     "@dreamworld/pwa-helpers" "^1.13.1"
 
-"@dreamworld/dw-menu@^2.5.5":
-  version "2.5.5"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-menu/-/dw-menu-2.5.5.tgz#7557984d30996a2e73e7a4573d4ee0a87afbf52c"
-  integrity sha512-r/yBjn5VmxLI95ym7WIEPXzIdT/ExAIkNlWdR1Y1C1p5uLAwM4ZjKZGgobcfdDCFDzM3Ersr/FfG18FAD04fog==
+"@dreamworld/dw-menu@^2.5.6-tooltip-style-not-proper.1":
+  version "2.5.6-tooltip-style-not-proper.1"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-menu/-/dw-menu-2.5.6-tooltip-style-not-proper.1.tgz#b6585cc680c2b1f7be1d75a0ae632a9bfb7c3408"
+  integrity sha512-W+2xPCKyp0EK2iSivBDzlGtZhQUdQvMTbPNtclMiSQRTHtPY8NGQTFi2Wre1cr+L+fdgd/hgqq4hTaLazrS8ew==
   dependencies:
     "@dreamworld/dw-dialog" "^5.7.0"
     "@dreamworld/dw-icon-button" "^3.2.1"
