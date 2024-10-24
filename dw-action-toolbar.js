@@ -277,8 +277,9 @@ export class DwActionToolbar extends LitElement {
                   style="${styleMap(this._setPrimaryActionIconColor(action))}"
                   .iconSize="${this.primaryActionIconSize}"
                   .buttonSize="${this.primaryActionButtonSize}"
-                  .title="${!this._touchDevice && action.tooltip ? action.tooltip : ''}"
+                  .title="${!this._touchDevice && action.tooltip ? action.tooltip : ""}"
                   .iconFont=${action.iconFont}
+                  .symbol=${action.iconSymbol}
                   name="${action.name}"
                   icon="${action.icon}"
                   ?disabled=${this.disabledActions && this.disabledActions[action.name]}
@@ -309,8 +310,9 @@ export class DwActionToolbar extends LitElement {
 
     let subActionTitle;
 
-    if(this._menuOpenedFor) {
-      subActionTitle = find(this.actions, (action) => action.name === this._menuOpenedFor)?.subActionTitle || ``;
+    if (this._menuOpenedFor) {
+      subActionTitle =
+        find(this.actions, (action) => action.name === this._menuOpenedFor)?.subActionTitle || ``;
     }
 
     return html`<dw-menu
@@ -351,9 +353,15 @@ export class DwActionToolbar extends LitElement {
   _setPrimaryActionIconColor(item) {
     if (item.iconColor) {
       if (item.iconColor.startsWith("-")) {
-        return { "--dw-icon-color": `var(${item.iconColor})` };
+        return {
+          "--dw-icon-color": `var(${item.iconColor})`,
+          "--mdc-theme-on-surface": `var(${item.iconColor})`,
+        };
       } else {
-        return { "--dw-icon-color": `${item.iconColor}` };
+        return {
+          "--dw-icon-color": `${item.iconColor}`,
+          "--mdc-theme-on-surface": `${item.iconColor}`,
+        };
       }
     }
     return {};
