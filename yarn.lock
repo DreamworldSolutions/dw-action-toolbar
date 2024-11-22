@@ -89,15 +89,15 @@
     "@dreamworld/material-styles" "^3.0.0"
     "@dreamworld/pwa-helpers" "^1.13.1"
 
-"@dreamworld/dw-menu@^2.5.5":
-  version "2.5.5"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-menu/-/dw-menu-2.5.5.tgz#7557984d30996a2e73e7a4573d4ee0a87afbf52c"
-  integrity sha512-r/yBjn5VmxLI95ym7WIEPXzIdT/ExAIkNlWdR1Y1C1p5uLAwM4ZjKZGgobcfdDCFDzM3Ersr/FfG18FAD04fog==
+"@dreamworld/dw-menu@^2.5.7-add-a-way-to-change-list-item-icon-and-text-color.1":
+  version "2.5.7-add-a-way-to-change-list-item-icon-and-text-color.1"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-menu/-/dw-menu-2.5.7-add-a-way-to-change-list-item-icon-and-text-color.1.tgz#319f7dbc43f5e6955af644c695401cfcc7394f75"
+  integrity sha512-/wWji5qqk/10iGSizwES0L1CSBxssPuL5S40Ie917lORpGhwnxgc63GvraAOhLrSZTktE99WBYmmjeiT9ODzdg==
   dependencies:
     "@dreamworld/dw-dialog" "^5.7.0"
     "@dreamworld/dw-icon-button" "^3.2.1"
     "@dreamworld/dw-list-item" "^4.3.1"
-    "@dreamworld/dw-tooltip" "^3.1.1"
+    "@dreamworld/dw-tooltip" "^3.1.2"
     "@dreamworld/material-styles" "^3.2.2"
     "@dreamworld/pwa-helpers" "^1.16.5"
 
@@ -112,6 +112,15 @@
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@dreamworld/dw-tooltip/-/dw-tooltip-3.1.1.tgz#ccf7488b79cc08c6edc9f752446a50ba0a3be9c8"
   integrity sha512-PbOhFO51tjd3ASLRi9wEupA4ClMfXHjmIynhHjLK3xMsuPL97E1/YJP9Z5ZYUB9wu3Gr4PIvbUKgdPUSb8BfeA==
+  dependencies:
+    "@dreamworld/material-styles" "^3.0.0"
+    "@dreamworld/pwa-helpers" "^1.13.1"
+    tippy.js "^6.2.7"
+
+"@dreamworld/dw-tooltip@^3.1.2":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-tooltip/-/dw-tooltip-3.1.4.tgz#7731d19c1bafc88a935c60a941db7b3fa3b8fd85"
+  integrity sha512-lS+Dzsm+QtjkOGI3GJSGCAldRW06YL1Sytc94/FHNFKgJDemhwbz9Rl3pbX4I3sqd7lcDHZLJzFeDPCXXT0O4Q==
   dependencies:
     "@dreamworld/material-styles" "^3.0.0"
     "@dreamworld/pwa-helpers" "^1.13.1"
