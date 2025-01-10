@@ -20,7 +20,7 @@
   "dependencies": {
     "@dreamworld/device-info": "^1.3.0",
     "@dreamworld/dw-icon-button": "^3.2.1",
-    "@dreamworld/dw-menu": "^2.5.7-add-a-way-to-change-list-item-icon-and-text-color.1",
+    "@dreamworld/dw-menu": "^2.5.8",
     "@dreamworld/pwa-helpers": "^1.17.2",
     "lodash-es": "^4.17.21"
   },

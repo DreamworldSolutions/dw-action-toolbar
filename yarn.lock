@@ -89,10 +89,10 @@
     "@dreamworld/material-styles" "^3.0.0"
     "@dreamworld/pwa-helpers" "^1.13.1"
 
-"@dreamworld/dw-menu@^2.5.7-add-a-way-to-change-list-item-icon-and-text-color.1":
-  version "2.5.7-add-a-way-to-change-list-item-icon-and-text-color.1"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-menu/-/dw-menu-2.5.7-add-a-way-to-change-list-item-icon-and-text-color.1.tgz#319f7dbc43f5e6955af644c695401cfcc7394f75"
-  integrity sha512-/wWji5qqk/10iGSizwES0L1CSBxssPuL5S40Ie917lORpGhwnxgc63GvraAOhLrSZTktE99WBYmmjeiT9ODzdg==
+"@dreamworld/dw-menu@^2.5.8":
+  version "2.5.8"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-menu/-/dw-menu-2.5.8.tgz#bfb2a8e12b9a37e265673d53026d6690bf4e1a68"
+  integrity sha512-OtYPrsmvLsYJaZjWLgD+9GK4sjCoL0xpLdB/T7ToI2m2o7yLs0bbRVmuBJh+4S34M2v8M+nVbhvMtV4G8tHCUg==
   dependencies:
     "@dreamworld/dw-dialog" "^5.7.0"
     "@dreamworld/dw-icon-button" "^3.2.1"
