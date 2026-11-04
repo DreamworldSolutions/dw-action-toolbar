@@ -1,6 +1,6 @@
 import { LitElement } from '@dreamworld/pwa-helpers/lit-element.js';
-import { html, css } from 'lit-element';
-import { repeat } from 'lit-html/directives/repeat.js';
+import { html, css } from 'lit';
+import { repeat } from 'lit/directives/repeat.js';
 import * as layoutLiterals from '@dreamworld/flex-layout';
 import '@dreamworld/dw-select/dw-select';
 import '@dreamworld/dw-icon-button/dw-icon-button.js';
@@ -8,7 +8,7 @@ import isEmpty from 'lodash-es/isEmpty';
 import isEqual from 'lodash-es/isEqual';
 import clone from 'lodash-es/clone';
 import filter from 'lodash-es/filter';
-import { styleMap } from 'lit-html/directives/style-map.js';
+import { styleMap } from 'lit/directives/style-map.js';
 
 export class DwActionToolbar extends LitElement {
   static get styles() {
